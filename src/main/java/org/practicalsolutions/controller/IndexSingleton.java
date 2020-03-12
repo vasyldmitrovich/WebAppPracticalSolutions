@@ -42,7 +42,7 @@ public class IndexSingleton {
                 stringBuilder.append(line).append("\n");
             }
         } catch (IOException e) {
-            System.out.println(e);
+            System.err.format("IOException: %s%n", e);
         }
         return stringBuilder.toString();
     }
