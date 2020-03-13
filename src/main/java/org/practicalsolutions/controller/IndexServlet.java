@@ -1,6 +1,7 @@
 package org.practicalsolutions.controller;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.practicalsolutions.service.Tasks;
 import org.practicalsolutions.view.IndexView;
 
@@ -22,7 +23,7 @@ import java.io.PrintWriter;
 public class IndexServlet extends HttpServlet {
 
     public static final Logger log = Logger.getLogger(IndexServlet.class);
-    private static final String SAVE_DIR = "/images/";
+    private static final String SAVE_DIR = "images";
 
     @Override
     public void init() throws ServletException {
@@ -30,15 +31,18 @@ public class IndexServlet extends HttpServlet {
         String patch = getServletContext().getRealPath("/view/html/");
         IndexSingleton indexSingleton = IndexSingleton.getInstance();
         indexSingleton.setPatch(patch);
+        DOMConfigurator.configure("log4j.properties");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathToFileImage = SAVE_DIR+"/";
+        String pathToFileImage = SAVE_DIR;
         PrintWriter out = response.getWriter();
         // gets absolute path of the web application
         String appPath = request.getServletContext().getRealPath("");
+        System.out.println("this is app path: "+appPath);
         // constructs path of the directory to save uploaded file
-        String savePath = appPath + File.separator + SAVE_DIR;
+        String savePath = appPath + SAVE_DIR + File.separator;
+        System.out.println("This is save path: "+savePath);
         // creates the save directory if it does not exists
         File fileSaveDir = new File(savePath);
         if (!fileSaveDir.exists()) {
@@ -46,8 +50,8 @@ public class IndexServlet extends HttpServlet {
         }
             for (Part part : request.getParts()) {
                 String fileName = extractFileName(part);
-                pathToFileImage = pathToFileImage+fileName;
-                System.out.println(pathToFileImage);
+                pathToFileImage = pathToFileImage+File.separator+fileName;
+                System.out.println("This is place where file is on server: "+pathToFileImage);
                 log.info("File is upload"+pathToFileImage);
                 // refines the fileName in case it is an absolute path
                 fileName = new File(fileName).getName();
