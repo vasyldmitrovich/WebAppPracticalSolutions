@@ -1,3 +1,31 @@
 body {
-    background-color: lightyellow
+    background-color: #B7BBC3;
+}
+.first-task-area {
+    width: 300px;
+    height: 300px;
+}
+.flex-container {
+    display: flex;
+    align-items: flex-start;
+    flex-flow: row;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #A1BEC7;
+    padding: 1%;
+}
+
+.flex-item {
+    width: 30%;
+    flex-basis: 30%;
+    padding: 1%;
+}
+@media (max-width: 800px) {
+    .flex-container {
+        display: block;
+    }
+    .flex-item {
+        width: auto;
+    }
 }

@@ -18,13 +18,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "IndexServlet", urlPatterns = "/", loadOnStartup = 1)
-@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+/*@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10,      // 10MB
-        maxRequestSize = 1024 * 1024 * 50)   // 50MB
+        maxRequestSize = 1024 * 1024 * 50)   // 50MB*/
 public class IndexServlet extends HttpServlet {
 
     public static final Logger log = LogManager.getLogger(IndexServlet.class);
-    private static final String SAVE_DIR = "images";
+    /*private static final String SAVE_DIR = "images";*/
 
     @Override
     public void init() throws ServletException {
@@ -35,7 +35,7 @@ public class IndexServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathToFileImage = SAVE_DIR;
+        /*String pathToFileImage = SAVE_DIR;
         PrintWriter out = response.getWriter();
         // gets absolute path of the web application
         String appPath = request.getServletContext().getRealPath("");
@@ -58,7 +58,7 @@ public class IndexServlet extends HttpServlet {
                 part.write(savePath + File.separator + fileName);
             }
         request.setAttribute("done", "Upload has been done successfully!");
-        response.sendRedirect("/");
+        response.sendRedirect("/");*/
 
     }
 

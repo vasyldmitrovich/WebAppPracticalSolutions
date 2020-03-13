@@ -7,7 +7,7 @@ public class Tasks {
     public static void main(String[] args) {
         Tasks tasks = new Tasks();
         tasks.fizzBuzzString("This is fizz","This is buzz");
-        tasks.middleTwo("ThisWillByMiddle");
+
         log.debug("Debug Message Logged !!!");
         log.info("Info Message Logged !!!");
         log.error("Error Message Logged !!!", new NullPointerException("NullError"));
@@ -29,17 +29,41 @@ public class Tasks {
             String buzz = secondName;
             if (i%3!=0) fizz = ""; else iterator = "";
             if (i%5!=0) buzz = ""; else iterator = "";
-            fizzBuzz.append(iterator+fizz+buzz+"<br>");
+            fizzBuzz.append(iterator+fizz+buzz+"  ");
         }
         log.info("Method fizzBuzzString finished own work");
         return fizzBuzz.toString();
     }
 
-    public String middleTwo(String str) {
-        log.info("Method middleTwo start");
-        int middle = str.length();
-        int middle3 = (int)middle/2;
-        log.info("Method middleTwo finished");
-        return str.substring(middle3-1,middle3+1);
+    /*Return a new int array of length n, containing the numbers 0, 1, 2, ... n-1.
+    * The given n may be 0*/
+    public int[] fizzArray1(int n) {
+        int [] myNewReturnArray = new int [n];
+        for (int i = 0; i < myNewReturnArray.length; i++){
+            myNewReturnArray[i] = i;
+        }
+        return myNewReturnArray;
+    }
+
+    /*return a new string array of length n, containing the strings "0", "1" "2" ..
+    through n-1. N may be 0*/
+    public String[] fizzArray2(int n) {
+        String [] out = new String [n];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = String.valueOf(i);
+        }
+        return out;
+    }
+
+    /*Given start and end numbers, return a new array containing the sequence of integers
+    from start up to but not including end. The end number will be greater or
+    equal to the start number.*/
+    public int[] fizzArray3(int start, int end) {
+        int lengthArray = end-start;
+        int [] fizzArray = new int [lengthArray];
+        for (int i = 0; i < fizzArray.length; i++){
+            fizzArray[i] = start+i;
+        }
+        return fizzArray;
     }
 }

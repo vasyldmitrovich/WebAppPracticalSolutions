@@ -19,6 +19,28 @@ public class FizzBuzzServlet extends HttpServlet {
     public static final Logger log = LogManager.getLogger(IndexServlet.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String numberArray1 = request.getParameter("numberForArray1");
+
+
+        if (firstName != null && lastName != null){
+            Tasks tasks = new Tasks();
+            String fizzBuzzString = tasks.fizzBuzzString(firstName,lastName);
+
+            FizzBuzzView fizzBuzzView = new FizzBuzzView();
+            String fullPage = fizzBuzzView.formingPageIndex(fizzBuzzString);
+            out.println(fullPage);
+        }
+        if (numberArray1 != null){
+
+        }
+        else {
+            doGet(request,response);
+        }
+
 
     }
 
@@ -26,11 +48,17 @@ public class FizzBuzzServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         FizzBuzzView fizzBuzzView = new FizzBuzzView();
-        Tasks tasks = new Tasks();
-        String fizzBuzzString = tasks.fizzBuzzString("Fizz","Buzz");
-        String fullPage = fizzBuzzView.formingPageIndex(fizzBuzzString);
-        System.out.println(fullPage);
-        out.println(fullPage);
+
+        String fizzBuzzString = request.getParameter("fizzBuzzString");
+
+        if (fizzBuzzString != null){
+            String fullPage = fizzBuzzView.formingPageIndex(fizzBuzzString);
+            out.println(fullPage);
+        } else {
+            String fullPage = fizzBuzzView.formingPageIndex(" ");
+            out.println(fullPage);
+        }
+
 
     }
 }

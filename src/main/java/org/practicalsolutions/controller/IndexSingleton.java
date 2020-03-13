@@ -19,7 +19,7 @@ public class IndexSingleton {
 
     private String patch;
     private String index;
-    private String fuzzBuzz;
+    private String fizzBuzz;
 
 
     private static IndexSingleton indexSingleton = new IndexSingleton();
@@ -35,15 +35,15 @@ public class IndexSingleton {
         return index;
     }
 
-    public String getFuzzBuzz() {
-        log.info("Get info where is file FuzzBuzz");
-        return fuzzBuzz;
+    public String getFizzBuzz() {
+        log.info("Get info where is file FizzBuzzBody");
+        return fizzBuzz;
     }
 
     public void setPatch(String patch) {
         this.patch = patch;
         this.index = getPartialHtml("index");
-        this.fuzzBuzz = getPartialHtml("FizzBuzzBody");
+        this.fizzBuzz = getPartialHtml("FizzBuzzBody");
         log.info("Set patch to files html on server");
     }
 

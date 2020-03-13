@@ -8,8 +8,7 @@ public class FizzBuzzView {
         IndexSingleton indexSingleton = IndexSingleton.getInstance();
         String fromIndex = indexSingleton.getIndex();
 
-        String fromFizzBuzzBody = indexSingleton.getFuzzBuzz();
-
+        String fromFizzBuzzBody = indexSingleton.getFizzBuzz();
         String replaceFromMethod = fromFizzBuzzBody.replace("<!--FizzBuzzString-->",inputInBody);
         String full = fromIndex.replace("<!--FizzBuzzBody-->",replaceFromMethod);
 
