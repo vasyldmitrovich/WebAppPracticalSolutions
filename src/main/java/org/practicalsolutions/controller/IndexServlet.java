@@ -1,7 +1,8 @@
 package org.practicalsolutions.controller;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.practicalsolutions.service.Tasks;
 import org.practicalsolutions.view.IndexView;
 
@@ -22,7 +23,7 @@ import java.io.PrintWriter;
         maxRequestSize = 1024 * 1024 * 50)   // 50MB
 public class IndexServlet extends HttpServlet {
 
-    public static final Logger log = Logger.getLogger(IndexServlet.class);
+    public static final Logger log = LogManager.getLogger(IndexServlet.class);
     private static final String SAVE_DIR = "images";
 
     @Override
@@ -31,7 +32,6 @@ public class IndexServlet extends HttpServlet {
         String patch = getServletContext().getRealPath("/view/html/");
         IndexSingleton indexSingleton = IndexSingleton.getInstance();
         indexSingleton.setPatch(patch);
-        DOMConfigurator.configure("log4j.properties");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,7 +52,7 @@ public class IndexServlet extends HttpServlet {
                 String fileName = extractFileName(part);
                 pathToFileImage = pathToFileImage+File.separator+fileName;
                 System.out.println("This is place where file is on server: "+pathToFileImage);
-                log.info("File is upload"+pathToFileImage);
+                log.info("File is upload: "+pathToFileImage);
                 // refines the fileName in case it is an absolute path
                 fileName = new File(fileName).getName();
                 part.write(savePath + File.separator + fileName);
@@ -77,8 +77,6 @@ public class IndexServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
-        Tasks tasks = new Tasks();
-        String fizzBuzzString = tasks.fizzBuzzString("Fizz","Buzz");
-        out.println(indexView.formingPageIndex(fizzBuzzString));
+        out.println(indexView.formingPageIndex("Hello from index page"));
     }
 }

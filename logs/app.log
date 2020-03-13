@@ -1,0 +1,18 @@
+2020-03-13 15:39:28,946 INFO o.p.s.Tasks [main] Method fizzBuzzString start working
+2020-03-13 15:39:28,948 INFO o.p.s.Tasks [main] Method fizzBuzzString finished own work
+2020-03-13 15:39:28,948 INFO o.p.s.Tasks [main] Method middleTwo start
+2020-03-13 15:39:28,948 INFO o.p.s.Tasks [main] Method middleTwo finished
+2020-03-13 15:39:28,948 DEBUG o.p.s.Tasks [main] Debug Message Logged !!!
+2020-03-13 15:39:28,949 INFO o.p.s.Tasks [main] Info Message Logged !!!
+2020-03-13 15:39:28,949 ERROR o.p.s.Tasks [main] Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:16) [classes/:?]
+2020-49-13 15:49:19.490 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString start working
+2020-49-13 15:49:19.492 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString finished own work
+2020-49-13 15:49:19.492 [main] INFO  org.practicalsolutions.service.Tasks - Method middleTwo start
+2020-49-13 15:49:19.492 [main] INFO  org.practicalsolutions.service.Tasks - Method middleTwo finished
+2020-49-13 15:49:19.493 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-49-13 15:49:19.493 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-49-13 15:49:19.493 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:16) [classes/:?]

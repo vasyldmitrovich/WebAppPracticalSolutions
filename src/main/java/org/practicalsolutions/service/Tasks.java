@@ -1,15 +1,19 @@
 package org.practicalsolutions.service;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Tasks {
     public static void main(String[] args) {
         Tasks tasks = new Tasks();
         tasks.fizzBuzzString("This is fizz","This is buzz");
         tasks.middleTwo("ThisWillByMiddle");
+        log.debug("Debug Message Logged !!!");
+        log.info("Info Message Logged !!!");
+        log.error("Error Message Logged !!!", new NullPointerException("NullError"));
     }
 
-    public static final Logger log = Logger.getLogger(Tasks.class);
+    public static final Logger log = LogManager.getLogger(Tasks.class);
 
     /* Return the numbers 1..100
         For multiples of 3, print "firstName" instead of the number

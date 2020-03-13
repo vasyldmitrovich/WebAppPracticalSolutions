@@ -1,5 +1,8 @@
 package org.practicalsolutions.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -8,11 +11,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /*This class for to take the location
-of the file on server*/
+of the files on server*/
 
 public class IndexSingleton {
+
+    public static final Logger log = LogManager.getLogger(IndexServlet.class);
+
     private String patch;
     private String index;
+    private String fuzzBuzz;
+
+
     private static IndexSingleton indexSingleton = new IndexSingleton();
 
     private IndexSingleton(){}
@@ -22,12 +31,20 @@ public class IndexSingleton {
     }
 
     public String getIndex() {
+        log.info("Get info where is file Index");
         return index;
+    }
+
+    public String getFuzzBuzz() {
+        log.info("Get info where is file FuzzBuzz");
+        return fuzzBuzz;
     }
 
     public void setPatch(String patch) {
         this.patch = patch;
         this.index = getPartialHtml("index");
+        this.fuzzBuzz = getPartialHtml("FizzBuzzBody");
+        log.info("Set patch to files html on server");
     }
 
 
@@ -42,7 +59,8 @@ public class IndexSingleton {
                 stringBuilder.append(line).append("\n");
             }
         } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
+            //System.err.format("IOException: %s%n", e);
+            log.error("IOException: No html file on disc: ",e);
         }
         return stringBuilder.toString();
     }
