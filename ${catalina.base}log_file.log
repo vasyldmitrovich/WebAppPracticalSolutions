@@ -7,3 +7,24 @@
 2020-34-13 16:34:58.560 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
 java.lang.NullPointerException: NullError
 	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-10-14 22:10:06.792 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString start working
+2020-10-14 22:10:06.814 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString finished own work
+2020-10-14 22:10:06.814 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-10-14 22:10:06.814 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-10-14 22:10:06.815 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-10-14 22:10:40.669 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString start working
+2020-10-14 22:10:40.671 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString finished own work
+2020-10-14 22:10:40.671 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-10-14 22:10:40.671 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-10-14 22:10:40.672 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-10-14 22:10:52.640 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString start working
+2020-10-14 22:10:52.642 [main] INFO  org.practicalsolutions.service.Tasks - Method fizzBuzzString finished own work
+2020-10-14 22:10:52.642 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-10-14 22:10:52.643 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-10-14 22:10:52.643 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]

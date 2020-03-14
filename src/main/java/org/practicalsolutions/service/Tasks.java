@@ -11,6 +11,9 @@ public class Tasks {
         log.debug("Debug Message Logged !!!");
         log.info("Info Message Logged !!!");
         log.error("Error Message Logged !!!", new NullPointerException("NullError"));
+        String a = "2";
+        int b = Integer.parseInt(a);
+        System.out.println("from a to b parse integer");
     }
 
     public static final Logger log = LogManager.getLogger(Tasks.class);

@@ -21,44 +21,35 @@ public class FizzBuzzServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String numberArray1 = request.getParameter("numberForArray1");
 
+        Tasks tasks = new Tasks();
+        FizzBuzzView fizzBuzzView = new FizzBuzzView();
 
         if (firstName != null && lastName != null){
-            Tasks tasks = new Tasks();
             String fizzBuzzString = tasks.fizzBuzzString(firstName,lastName);
-
-            FizzBuzzView fizzBuzzView = new FizzBuzzView();
-            String fullPage = fizzBuzzView.formingPageIndex(fizzBuzzString);
-            out.println(fullPage);
-        }
-        if (numberArray1 != null){
-
+            out.println(fizzBuzzView.fizzString(fizzBuzzString));
+        } else if (numberArray1 != null){
+            try {
+                int numbForArr1 = Integer.parseInt(numberArray1);
+                int [] fizzArray = tasks.fizzArray1(numbForArr1);
+                out.println(fizzBuzzView.fizzFirstArr(fizzArray));
+            } catch (NumberFormatException e){
+                log.error("Instead Integer we received another type: "+e);
+            }
         }
         else {
             doGet(request,response);
         }
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         FizzBuzzView fizzBuzzView = new FizzBuzzView();
-
-        String fizzBuzzString = request.getParameter("fizzBuzzString");
-
-        if (fizzBuzzString != null){
-            String fullPage = fizzBuzzView.formingPageIndex(fizzBuzzString);
-            out.println(fullPage);
-        } else {
-            String fullPage = fizzBuzzView.formingPageIndex(" ");
-            out.println(fullPage);
-        }
-
-
+        out.println(fizzBuzzView.pageFizzBuzz());
     }
 }

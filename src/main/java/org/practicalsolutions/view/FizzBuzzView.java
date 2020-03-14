@@ -4,14 +4,27 @@ import org.practicalsolutions.controller.IndexSingleton;
 
 public class FizzBuzzView {
 
-    public String formingPageIndex (String inputInBody){
-        IndexSingleton indexSingleton = IndexSingleton.getInstance();
-        String fromIndex = indexSingleton.getIndex();
+    public static IndexSingleton indexSingleton = IndexSingleton.getInstance();
+    public static String reedIndexPage = indexSingleton.getIndex();
+    public static String reedFizzBuzzBodyPage = indexSingleton.getFizzBuzz();
 
-        String fromFizzBuzzBody = indexSingleton.getFizzBuzz();
-        String replaceFromMethod = fromFizzBuzzBody.replace("<!--FizzBuzzString-->",inputInBody);
-        String full = fromIndex.replace("<!--FizzBuzzBody-->",replaceFromMethod);
+    public String pageFizzBuzz () {
+        return reedIndexPage.replace("<!--FizzBuzzBody-->",reedFizzBuzzBodyPage);
+    }
 
-        return full;
+    public String fizzString (String fromString) {
+        String fullP = reedIndexPage.replace("<!--FizzBuzzBody-->",reedFizzBuzzBodyPage);
+        return fullP.replace("<!--FizzBuzzString-->",fromString);
+    }
+
+    public String fizzFirstArr (int [] fromFirstArray) {
+        String fullP = reedIndexPage.replace("<!--FizzBuzzBody-->",reedFizzBuzzBodyPage);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int a: fromFirstArray
+             ) {
+            stringBuilder.append(a+"  ");
+        }
+        return fullP.replace("<!--FizzBuzzArray1-->",stringBuilder.toString());
     }
 }
