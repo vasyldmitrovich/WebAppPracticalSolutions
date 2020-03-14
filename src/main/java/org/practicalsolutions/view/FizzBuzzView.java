@@ -14,7 +14,7 @@ public class FizzBuzzView {
 
     public String fizzString (String fromString) {
         String fullP = reedIndexPage.replace("<!--FizzBuzzBody-->",reedFizzBuzzBodyPage);
-        return fullP.replace("<!--FizzBuzzString-->",fromString);
+        return fullP.replace("FizzBuzzString",fromString);
     }
 
     public String fizzFirstArr (int [] fromFirstArray) {
@@ -25,6 +25,17 @@ public class FizzBuzzView {
              ) {
             stringBuilder.append(a+"  ");
         }
-        return fullP.replace("<!--FizzBuzzArray1-->",stringBuilder.toString());
+        return fullP.replace("FizzBuzzArray1",stringBuilder.toString());
+    }
+
+    public String fizzThirdArr (int [] fromThirdArray) {
+        String fullP = reedIndexPage.replace("<!--FizzBuzzBody-->",reedFizzBuzzBodyPage);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int a: fromThirdArray
+        ) {
+            stringBuilder.append(a+"  ");
+        }
+        return fullP.replace("FizzBuzzArray3",stringBuilder.toString());
     }
 }
