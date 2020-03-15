@@ -27,6 +27,8 @@ public class FizzBuzzServlet extends HttpServlet {
         String numberArray1 = request.getParameter("numberForArray1");
         String numberArray3Start = request.getParameter("numberStartForArray3");
         String numberArray3Finish = request.getParameter("numberFinishForArray3");
+        String numberFizzBuzzStart = request.getParameter("numberStartForFizzBuzz");
+        String numberFizzBuzzFinish = request.getParameter("numberFinishForFizzBuzz");
 
         Tasks tasks = new Tasks();
         FizzBuzzView fizzBuzzView = new FizzBuzzView();
@@ -48,6 +50,15 @@ public class FizzBuzzServlet extends HttpServlet {
                 int numbForArr3Finish = Integer.parseInt(numberArray3Finish);
                 int [] fizzArray3 = tasks.fizzArray3(numbForArr3Start,numbForArr3Finish);
                 out.println(fizzBuzzView.fizzThirdArr(fizzArray3));
+            } catch (NumberFormatException e){
+                log.error("Instead Integer we received another type: "+e);
+            }
+        } else if (numberFizzBuzzStart != null && numberFizzBuzzFinish != null){
+            try {
+                int numbForFizzBuzzStart = Integer.parseInt(numberFizzBuzzStart);
+                int numbForFizzBuzzFinish = Integer.parseInt(numberFizzBuzzFinish);
+                String [] fizzBuzz = tasks.fizzBuzz(numbForFizzBuzzStart,numbForFizzBuzzFinish);
+                out.println(fizzBuzzView.fizzBuzz(fizzBuzz));
             } catch (NumberFormatException e){
                 log.error("Instead Integer we received another type: "+e);
             }

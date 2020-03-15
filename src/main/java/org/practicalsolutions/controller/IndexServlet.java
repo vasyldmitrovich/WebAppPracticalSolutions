@@ -35,6 +35,29 @@ public class IndexServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String firstVar = request.getParameter("firstVariable");
+        String secondVar = request.getParameter("secondVariable");
+
+        Tasks tasks = new Tasks();
+        IndexView indexView = new IndexView();
+
+        if (firstVar != null && secondVar != null) {
+            try {
+                String before = "For now first number: "+firstVar+" second number: "+secondVar;
+                int first = Integer.parseInt(firstVar);
+                int second = Integer.parseInt(secondVar);
+                String after = tasks.swapVariable(first,second);
+                out.println(indexView.formingPageIndex(before,after));
+            } catch (NumberFormatException e) {
+                log.error("Instead Integer we received another type: "+e);
+            }
+        } else {
+            doGet(request,response);
+        }
+
         /*String pathToFileImage = SAVE_DIR;
         PrintWriter out = response.getWriter();
         // gets absolute path of the web application
@@ -77,6 +100,6 @@ public class IndexServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
-        out.println(indexView.formingPageIndex("Hello from index page"));
+        out.println(indexView.formingPageIndex("",""));
     }
 }

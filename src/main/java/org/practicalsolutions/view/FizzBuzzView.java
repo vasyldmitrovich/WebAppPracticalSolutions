@@ -38,4 +38,15 @@ public class FizzBuzzView {
         }
         return fullP.replace("FizzBuzzArray3",stringBuilder.toString());
     }
+
+    public String fizzBuzz (String [] fromFizzBuzz) {
+        String fullP = reedIndexPage.replace("<!--FizzBuzzBody-->",reedFizzBuzzBodyPage);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String a: fromFizzBuzz
+        ) {
+            stringBuilder.append(a+"  ");
+        }
+        return fullP.replace("FizzBuzzCompleting",stringBuilder.toString());
+    }
 }

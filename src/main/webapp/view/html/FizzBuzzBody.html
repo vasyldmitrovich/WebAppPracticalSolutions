@@ -4,7 +4,7 @@
             you will seeing text the numbers from 1 to 100<br>
             For multiples of 3, print "firstName" instead of the number<br>
             For multiples of 5, print "secondName" instead of the number<br>
-            For multiples of 3 and 5, print "firstNameSecondName" instead of the number<br>
+            For multiples of 3 and 5, print "firstNameSecondName" instead of the number.<br>
         </p>
     </div>
     <div class="flex-item">
@@ -27,7 +27,7 @@
 <div class="flex-container">
     <div class="flex-item">
         <p>If you input number from 0 to ...<br>
-            we return array from 0 to your number<br>
+            we return array from 0 to your number.<br>
         </p>
     </div>
     <div class="flex-item">
@@ -47,9 +47,9 @@
 
 <div class="flex-container">
     <div class="flex-item">
-        <p>If you input start and end numbers from 0 to ...<br>
-            we return new array containing the sequence of integers
-            from start up to but not including end<br>
+        <p>Enter from which number and to which<br>
+            We return new array containing the sequence of integers
+            from start up to but not including end.<br>
         </p>
     </div>
     <div class="flex-item">
@@ -59,12 +59,37 @@
                    placeholder="Input number here..."><br>
             <input class="form-control" type="number" min="0" name="numberFinishForArray3"
                    placeholder="Input number here..."><br>
-            <button type="submit" class="btn btn-primary mb-2">Show me</button>
+            <button type="submit" class="btn btn-primary mb-2">Go</button>
         </form>
     </div>
     <div class="flex-item">
         <textarea class="first-task-area">
             FizzBuzzArray3
+        </textarea>
+    </div>
+</div>
+
+<div class="flex-container">
+    <div class="flex-item">
+        <p>Enter from which number and to which<br>
+            We return new array containing the string form of these numbers, except for
+            multiples of 3, use "Fizz" instead of the number, for multiples of 5 use "Buzz",
+            and for multiples of both 3 and 5 use "FizzBuzz".<br>
+        </p>
+    </div>
+    <div class="flex-item">
+        <form method="post" action="/fizzBuzz">
+
+            <input class="form-control" type="number" min="0" name="numberStartForFizzBuzz"
+                   placeholder="Input number here..."><br>
+            <input class="form-control" type="number" min="0" name="numberFinishForFizzBuzz"
+                   placeholder="Input number here..."><br>
+            <button type="submit" class="btn btn-primary mb-2">Start</button>
+        </form>
+    </div>
+    <div class="flex-item">
+        <textarea class="first-task-area">
+            FizzBuzzCompleting
         </textarea>
     </div>
 </div>

@@ -25,7 +25,6 @@ public class Tasks {
         Here: fill an array instead of printing + some other complications */
     public String fizzBuzzString(String firstName, String secondName) {
         StringBuilder fizzBuzz = new StringBuilder();
-        log.info("Method fizzBuzzString start working");
         for (int i = 1; i < 101; i++) {
             String iterator = String.valueOf(i);
             String fizz = firstName;
@@ -34,7 +33,6 @@ public class Tasks {
             if (i%5!=0) buzz = ""; else iterator = "";
             fizzBuzz.append(iterator+fizz+buzz+"  ");
         }
-        log.info("Method fizzBuzzString finished own work");
         return fizzBuzz.toString();
     }
 
@@ -68,5 +66,29 @@ public class Tasks {
             fizzArray[i] = start+i;
         }
         return fizzArray;
+    }
+
+    /*Consider the series of numbers beginning at start and running up to but not including end.
+    * Return a new String[] array containing the string form of these numbers, except for
+    * multiples of 3, use "Fizz" instead of the number, for multiples of 5 use "Buzz",
+    * and for multiples of both 3 and 5 use "FizzBuzz".*/
+    public String[] fizzBuzz(int start, int end) {
+        String [] arr = new String [end-start];
+        for (int i= 0; i < arr.length; i++) {
+            int count = start+i;
+            String iterator = String.valueOf(count);
+            String fizz = "Fizz";
+            String buzz = "Buzz";
+            if(count%3 != 0) fizz = ""; else iterator = "";
+            if(count%5 != 0) buzz = ""; else iterator = "";
+            arr[i] = iterator+fizz+buzz;
+        }
+        return arr;
+    }
+
+    public String swapVariable(int a, int b){
+        a=a+b-(b=a);
+        String string = "For now first number: "+a+" second number: "+b;
+        return string;
     }
 }
