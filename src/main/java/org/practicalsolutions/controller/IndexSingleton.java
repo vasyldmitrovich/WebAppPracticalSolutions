@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -22,6 +23,7 @@ public class IndexSingleton {
     private String indexBody;
     private String fizzBuzz;
     private String transformSentence;
+    private String patchToFiles;
 
 
     private static IndexSingleton indexSingleton = new IndexSingleton();
@@ -52,6 +54,16 @@ public class IndexSingleton {
         return transformSentence;
     }
 
+    public String getPatchToFiles(){
+        log.info("Get info where is files folder");
+        return patchToFiles;
+    }
+
+    public void setPatchToFiles(String patchToFiles) {
+        this.patchToFiles = patchToFiles+File.separator;
+        log.info("Set patch to files on server");
+    }
+
     public void setPatch(String patch) {
         this.patch = patch;
         this.index = getPartialHtml("index");
@@ -64,7 +76,7 @@ public class IndexSingleton {
 
     private String getPartialHtml(String filename) {
         StringBuilder stringBuilder = new StringBuilder();
-        Path patch = Paths.get(this.patch+filename+".html");
+        Path patch = Paths.get(this.patch+ File.separator+filename+".html");
         Charset charset = Charset.forName("UTF-8");
 
         try (BufferedReader bufferedReader = Files.newBufferedReader(patch,charset)) {

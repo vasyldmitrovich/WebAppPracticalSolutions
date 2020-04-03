@@ -2,6 +2,7 @@ package org.practicalsolutions.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.practicalsolutions.service.TransformSentence;
 import org.practicalsolutions.view.TransformSentenceView;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 @WebServlet(name = "TransformSentenceServlet", urlPatterns = "/transformSentence")
 public class TransformSentenceServlet extends HttpServlet {
@@ -22,7 +27,19 @@ public class TransformSentenceServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String sentence = request.getParameter("sentence");
-        //TODO logic where user input sentence we return file and input on page this file
+
+        IndexSingleton indexSingleton = IndexSingleton.getInstance();
+        String patchToFile = indexSingleton.getPatchToFiles();
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_mm_dd_hh_mm_ss_ssss");
+        String patchPlusNameFile = patchToFile+dateFormat.format(date)+".txt";
+
+        TransformSentence transformSentence = new TransformSentence();
+        transformSentence.mySentence(sentence);
+        transformSentence.createFile(patchPlusNameFile);
+
+        //TODO view this page and link on file
         doGet(request,response);
     }
 

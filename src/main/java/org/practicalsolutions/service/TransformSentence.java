@@ -1,20 +1,21 @@
 package org.practicalsolutions.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.practicalsolutions.controller.IndexServlet;
+
+import java.io.*;
 import java.util.Scanner;
 
 public class TransformSentence {
-    //TODO change get data from web site and return file .txt with consist data from two-dimensional array
+
     /*The user input sentence, the output gets own sentence but big letters*/
+    public static final Logger log = LogManager.getLogger(IndexServlet.class);
     private static int indexArray = 0;
     final static private int heightArray = 7;
     final static private int wightArray = 180;
     private static String [] [] strings = new String[heightArray][wightArray];//Array where concat all letters
-    public static void main(String[] args) {
-        String inputSentence = getInputSentence();
-        mySentence(inputSentence);
-        printArray();
 
-    }
     private static String getInputSentence(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input any word or sentence. I will show you how it will be look on airport table." +
@@ -24,7 +25,7 @@ public class TransformSentence {
         return sentence;
     }//Scanner input letters.
 
-    private static void mySentence(String mSentence){
+    public void mySentence(String mSentence){
         String string = mSentence.toUpperCase();
         /*Clean array from value null*/
         for (int l = 0; l < strings.length; l++){
@@ -97,7 +98,7 @@ public class TransformSentence {
         indexArray = indexArray+columns;
     }//Add letter in array
 
-    private static void printArray(){
+    public void printArray(){
         for (int i=0; i < strings.length; i++){
             for (int j=0; j<strings[i].length; j++){
                 System.out.print(strings[i] [j]);
@@ -105,6 +106,28 @@ public class TransformSentence {
             System.out.println();
         }
     }//Print array letters
+
+
+    public void createFile(String pathAndNameFile){
+        try {
+            File fout = new File(pathAndNameFile);
+            FileOutputStream fos = new FileOutputStream(fout);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+
+            for (int i=0; i < strings.length; i++) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int j = 0; j < strings[i].length; j++) {
+                    stringBuilder.append(strings[i][j]);
+                }
+                bw.write(stringBuilder.toString());
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            log.error("IOException, can not create file: "+e);
+        }
+    }//Create file on server and write in this
+    // file data from array
 
     /*letters*/
 

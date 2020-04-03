@@ -29,9 +29,12 @@ public class IndexServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        String patch = getServletContext().getRealPath("/view/html/");
+        String patch = getServletContext().getRealPath(File.separator+"view"+File.separator+"html");
+        String patchToFiles = getServletContext().getRealPath(File.separator+"files");
+
         IndexSingleton indexSingleton = IndexSingleton.getInstance();
         indexSingleton.setPatch(patch);
+        indexSingleton.setPatchToFiles(patchToFiles);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
