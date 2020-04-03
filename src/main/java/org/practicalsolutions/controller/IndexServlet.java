@@ -100,6 +100,6 @@ public class IndexServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
-        out.println(indexView.formingPageIndex("",""));
+        out.println(indexView.pageIndex());
     }
 }

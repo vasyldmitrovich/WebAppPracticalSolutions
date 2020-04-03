@@ -14,6 +14,12 @@ public class Tasks {
         String a = "2";
         int b = Integer.parseInt(a);
         System.out.println("from a to b parse integer");
+
+        char c1 = '1';
+        char c2 = '\u0031';
+        char c3 = 49;
+        System.out.println("This is char c1 - 1"+"\nThis is char c2 - u0031"+"\nThis is char c3 - 49"+"\nSum: "+(c1+c2+c3));
+
     }
 
     public static final Logger log = LogManager.getLogger(Tasks.class);

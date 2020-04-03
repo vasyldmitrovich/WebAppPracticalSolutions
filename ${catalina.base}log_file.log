@@ -28,3 +28,43 @@ java.lang.NullPointerException: NullError
 2020-10-14 22:10:52.643 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
 java.lang.NullPointerException: NullError
 	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-08-19 19:08:56.472 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-08-19 19:08:56.476 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-08-19 19:08:56.476 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-13-19 19:13:53.954 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-13-19 19:13:53.957 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-13-19 19:13:53.957 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-15-19 19:15:28.819 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-15-19 19:15:28.821 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-15-19 19:15:28.822 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-15-19 19:15:51.963 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-15-19 19:15:51.965 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-15-19 19:15:51.965 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-17-19 19:17:08.291 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-17-19 19:17:08.294 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-17-19 19:17:08.294 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-17-19 19:17:22.244 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-17-19 19:17:22.247 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-17-19 19:17:22.248 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-17-19 19:17:34.644 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-17-19 19:17:34.647 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-17-19 19:17:34.647 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]
+2020-37-19 19:37:02.887 [main] DEBUG org.practicalsolutions.service.Tasks - Debug Message Logged !!!
+2020-37-19 19:37:02.891 [main] INFO  org.practicalsolutions.service.Tasks - Info Message Logged !!!
+2020-37-19 19:37:02.891 [main] ERROR org.practicalsolutions.service.Tasks - Error Message Logged !!!
+java.lang.NullPointerException: NullError
+	at org.practicalsolutions.service.Tasks.main(Tasks.java:13) [classes/:?]

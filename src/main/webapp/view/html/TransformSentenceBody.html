@@ -1,0 +1,25 @@
+<div class="flex-container">
+    <div class="flex-item">
+        <p>Please input any word or sentence here.<br>
+            You will see how it will be look on airport table.<br>
+            ATTENTION: this sentence must include only symbols:<br>
+            A-Z, a-z, "space", 0-9, "?", "|", "(", ")" and ".".<br>
+            Length must not be bigger than 30 symbols. <br>
+            If you input "JAVA" you will see something like that:<br>
+            <img src="/images/java.jpg">
+        </p>
+    </div>
+    <div class="flex-item">
+        <form method="post" action="/transformSentence">
+
+            <input class="form-control" type="text" name="sentence"
+                   placeholder="Input Sentence here..."><br><br>
+            <button type="submit" class="btn btn-primary mb-2">Transform</button>
+        </form>
+    </div>
+    <div class="flex-item">
+        <textarea class="first-task-area">
+            TransformSentenceBody
+        </textarea>
+    </div>
+</div>

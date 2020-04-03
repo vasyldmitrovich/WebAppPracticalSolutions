@@ -19,7 +19,9 @@ public class IndexSingleton {
 
     private String patch;
     private String index;
+    private String indexBody;
     private String fizzBuzz;
+    private String transformSentence;
 
 
     private static IndexSingleton indexSingleton = new IndexSingleton();
@@ -35,15 +37,27 @@ public class IndexSingleton {
         return index;
     }
 
+    public String getIndexBody() {
+        log.info("Get info where is file IndexBody");
+        return indexBody;
+    }
+
     public String getFizzBuzz() {
         log.info("Get info where is file FizzBuzzBody");
         return fizzBuzz;
     }
 
+    public String getTransformSentence(){
+        log.info("Get info where is file TransformSentence");
+        return transformSentence;
+    }
+
     public void setPatch(String patch) {
         this.patch = patch;
         this.index = getPartialHtml("index");
+        this.indexBody = getPartialHtml("IndexBody");
         this.fizzBuzz = getPartialHtml("FizzBuzzBody");
+        this.transformSentence = getPartialHtml("TransformSentenceBody");
         log.info("Set patch to files html on server");
     }
 
