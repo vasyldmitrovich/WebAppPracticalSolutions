@@ -3,35 +3,7 @@ package org.practicalsolutions.service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class Tasks {
-
-    /*This is temp main method only for testing some things*/
-    public static void main(String[] args) {
-        Tasks tasks = new Tasks();
-        tasks.fizzBuzzString("This is fizz","This is buzz");
-
-        log.debug("Debug Message Logged !!!");
-        log.info("Info Message Logged !!!");
-        log.error("Error Message Logged !!!", new NullPointerException("NullError"));
-        String a = "2";
-        int b = Integer.parseInt(a);
-        System.out.println("from a to b parse integer");
-
-        char c1 = '1';
-        char c2 = '\u0031';
-        char c3 = 49;
-        System.out.println("This is char c1 - 1"+"\nThis is char c2 - u0031"+"\nThis is char c3 - 49"+"\nSum: "+(c1+c2+c3));
-
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy_mm_dd_hh_mm_ss_ssss");
-        String strDate = dateFormat.format(date);
-        System.out.println(strDate);
-    }
 
     public static final Logger log = LogManager.getLogger(Tasks.class);
 
@@ -105,7 +77,6 @@ public class Tasks {
 
     public String swapVariable(int a, int b){
         a=a+b-(b=a);
-        String string = "For now first number: "+a+" second number: "+b;
-        return string;
+        return "For now first number: "+a+" second number: "+b;
     }
 }

@@ -7,7 +7,6 @@ import org.practicalsolutions.service.Tasks;
 import org.practicalsolutions.view.IndexView;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +17,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "IndexServlet", urlPatterns = "/", loadOnStartup = 1)
-/*@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
-        maxFileSize = 1024 * 1024 * 10,      // 10MB
-        maxRequestSize = 1024 * 1024 * 50)   // 50MB*/
+
 public class IndexServlet extends HttpServlet {
 
     public static final Logger log = LogManager.getLogger(IndexServlet.class);
-    /*private static final String SAVE_DIR = "images";*/
 
     @Override
     public void init() throws ServletException {
@@ -60,43 +56,6 @@ public class IndexServlet extends HttpServlet {
         } else {
             doGet(request,response);
         }
-
-        /*String pathToFileImage = SAVE_DIR;
-        PrintWriter out = response.getWriter();
-        // gets absolute path of the web application
-        String appPath = request.getServletContext().getRealPath("");
-        System.out.println("this is app path: "+appPath);
-        // constructs path of the directory to save uploaded file
-        String savePath = appPath + SAVE_DIR + File.separator;
-        System.out.println("This is save path: "+savePath);
-        // creates the save directory if it does not exists
-        File fileSaveDir = new File(savePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
-            for (Part part : request.getParts()) {
-                String fileName = extractFileName(part);
-                pathToFileImage = pathToFileImage+File.separator+fileName;
-                System.out.println("This is place where file is on server: "+pathToFileImage);
-                log.info("File is upload: "+pathToFileImage);
-                // refines the fileName in case it is an absolute path
-                fileName = new File(fileName).getName();
-                part.write(savePath + File.separator + fileName);
-            }
-        request.setAttribute("done", "Upload has been done successfully!");
-        response.sendRedirect("/");*/
-
-    }
-
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length() - 1);
-            }
-        }
-        return "";
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

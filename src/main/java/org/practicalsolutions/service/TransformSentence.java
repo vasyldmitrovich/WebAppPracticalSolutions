@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.practicalsolutions.controller.IndexServlet;
 
-import java.io.*;
 import java.util.Scanner;
 
 public class TransformSentence {
@@ -13,16 +12,23 @@ public class TransformSentence {
     public static final Logger log = LogManager.getLogger(IndexServlet.class);
     private static int indexArray = 0;
     final static private int heightArray = 7;
-    final static private int wightArray = 180;
-    private static String [] [] strings = new String[heightArray][wightArray];//Array where concat all letters
+    final static private int wightArray = 360;
+    private String [] [] strings;//Array where concat all letters
+
+    public TransformSentence() {
+        this.strings = new String[heightArray][wightArray];
+    }
+
+    public String[][] getStrings() {
+        return strings;
+    }
 
     private static String getInputSentence(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input any word or sentence. I will show you how it will be look on airport table." +
                 "\nATTENTION: only letters a-z or A-Z, space, numbers 0-9 and symbol ! ? ( ) and point." +
                 "\nDo not length then 30 symbols");
-        String sentence =  scanner.nextLine();
-        return sentence;
+        return scanner.nextLine();
     }//Scanner input letters.
 
     public void mySentence(String mSentence){
@@ -83,9 +89,10 @@ public class TransformSentence {
 
             }
         }
+        indexArray = 0;
     }//Build array with letters
 
-    private static void plusLetter(String [] [] str){
+    private void plusLetter(String [] [] str){
         int rows = str.length;// I get length rows array
         int columns = str[0].length;// I get length columns array
         /*This cycle get start index from static variable,
@@ -105,29 +112,11 @@ public class TransformSentence {
             }
             System.out.println();
         }
-    }//Print array letters
+    }//Print array letters in console
 
-
-    public void createFile(String pathAndNameFile){
-        try {
-            File fout = new File(pathAndNameFile);
-            FileOutputStream fos = new FileOutputStream(fout);
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-
-            for (int i=0; i < strings.length; i++) {
-                StringBuilder stringBuilder = new StringBuilder();
-                for (int j = 0; j < strings[i].length; j++) {
-                    stringBuilder.append(strings[i][j]);
-                }
-                bw.write(stringBuilder.toString());
-                bw.newLine();
-            }
-            bw.close();
-        } catch (IOException e) {
-            log.error("IOException, can not create file: "+e);
-        }
-    }//Create file on server and write in this
-    // file data from array
+    public boolean isStringCorrect (String string) {
+        return string.matches("[a-zA-Z0-9\\(\\)\\!\\?\\.\\s]+");
+    }//Check is sentence right
 
     /*letters*/
 
