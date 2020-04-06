@@ -37,6 +37,19 @@ public class Test {
         boolean kkokey = checkStringInOneLine(sss);
         System.out.println("This is boolean from sentence: "+kkokey);
 
+        int i = 1;
+        int sum = 0;
+
+        do
+        {
+            sum = sum + i;
+            System.out.println(sum);
+            i++;
+        }
+        while (i <= 10);
+
+        System.out.println(sum);
+
     }
 
     public static boolean checkStringInOneLine (String string) {

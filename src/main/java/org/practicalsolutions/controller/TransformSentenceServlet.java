@@ -63,7 +63,9 @@ public class TransformSentenceServlet extends HttpServlet {
                     log.error("IOException, can not write file from server: "+e);
                 }
             } else {
-                response.sendRedirect("/transformSentence?message=sorry");
+                TransformSentenceView transformSentenceView = new TransformSentenceView();
+                String fullPage = transformSentenceView.pageTransformSentence();
+                out.println(transformSentenceView.addMessageOnPage(fullPage));
             }
         } else {
             doGet(request,response);
@@ -73,16 +75,9 @@ public class TransformSentenceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String message = request.getParameter("message");
 
         TransformSentenceView transformSentenceView = new TransformSentenceView();
-        String fullPage = transformSentenceView.pageTransformSentence();
-
-        if (message != null && message.equals("sorry")) {
-            out.println(transformSentenceView.addMessageOnPage(fullPage));
-        } else {
-            out.println(fullPage);
-        }
+        out.println(transformSentenceView.pageTransformSentence());
     }
 
     public void createFile(String pathAndNameFile, String[][] strings){
