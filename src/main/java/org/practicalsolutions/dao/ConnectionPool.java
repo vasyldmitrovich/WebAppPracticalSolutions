@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class ConnectionPool {
 
-    public static final Logger log = LogManager.getLogger(IndexServlet.class);
+    public static final Logger log = LogManager.getLogger(ConnectionPool.class);
     private static ConnectionPool instance = null;
 
     private ConnectionPool() {}

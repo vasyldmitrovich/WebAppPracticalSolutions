@@ -7,7 +7,7 @@ public class Product {
     private long id;
     private double price;
     private String manufacturer;//A person or company that makes
-    private int year;
+    private int yearOfManufacturer;
 
     public Product(){}
 
@@ -15,7 +15,7 @@ public class Product {
         this.id = id;
         this.price = price;
         this.manufacturer = manufacturer;
-        this.year = year;
+        this.yearOfManufacturer = year;
     }
 
     public long getId() {
@@ -43,11 +43,11 @@ public class Product {
     }
 
     public int getYear() {
-        return year;
+        return yearOfManufacturer;
     }
 
     public void setYear(int year) {
-        this.year = year;
+        this.yearOfManufacturer = year;
     }
 
     @Override
@@ -57,13 +57,13 @@ public class Product {
         Product product = (Product) o;
         return id == product.id &&
                 Double.compare(product.price, price) == 0 &&
-                year == product.year &&
+                yearOfManufacturer == product.yearOfManufacturer &&
                 Objects.equals(manufacturer, product.manufacturer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, manufacturer, year);
+        return Objects.hash(id, price, manufacturer, yearOfManufacturer);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Product {
                 "id=" + id +
                 ", price=" + price +
                 ", manufacturer='" + manufacturer + '\'' +
-                ", year=" + year +
+                ", yearOfManufacturer=" + yearOfManufacturer +
                 '}';
     }
 

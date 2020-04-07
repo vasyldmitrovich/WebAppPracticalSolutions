@@ -10,9 +10,12 @@ public class Phone extends Product {
 
     public Phone(){}
 
-    public Phone(long id, double price, String manufacturer, int year, double screenDiagonal) {
+    public Phone(long id, double price, String manufacturer, int year, double screenDiagonal,
+                 double ram, double internalMemory) {
         super(id, price, manufacturer, year);
         this.screenDiagonal = screenDiagonal;
+        this.ram = ram;
+        this.internalMemory = internalMemory;
     }
 
     public double getScreenDiagonal() {

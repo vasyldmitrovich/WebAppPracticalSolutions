@@ -3,6 +3,8 @@ package org.practicalsolutions.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.practicalsolutions.dao.entity.Phone;
+import org.practicalsolutions.dao.repository.ProductDaoImp;
 import org.practicalsolutions.service.Tasks;
 import org.practicalsolutions.view.IndexView;
 
@@ -11,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,6 +62,9 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        ProductDaoImp productDaoImp = new ProductDaoImp();
+        Phone phone = productDaoImp.getProductById();
+        System.out.println(phone);
         IndexView indexView = new IndexView();
         out.println(indexView.pageIndex());
     }
