@@ -1,11 +1,30 @@
 package org.practicalsolutions.service;
 
-import java.util.Arrays;
+import org.practicalsolutions.dao.entity.Phone;
+import org.practicalsolutions.dao.entity.Product;
+import org.practicalsolutions.dao.repository.ProductDaoImp;
+
+/*This is testing class, where I am testing some functionality*/;
 public class Test2 {
 
     public static void main(String[] args) {
+        ProductDaoImp productDaoImp = new ProductDaoImp();
+        System.out.println(productDaoImp.getProductById());
+        Phone product = new Phone(2,2200,"Home",
+                2020,10.8,512,3000);
+        System.out.println(product.getId());
+        System.out.println(product.getPrice());
+        System.out.println(product.getManufacturer());
+        System.out.println(product.getYear());
+        System.out.println(product.getScreenDiagonal());
+        System.out.println(product.getRam());
+        System.out.println(product.getInternalMemory());
+        Product p = product;
+        System.out.println(p.getId());
+        Phone phh = (Phone)p;
+        System.out.println(phh.getRam());
 
-        int [] arrayFirst = {1,2,3,4,5,6,7,8,9,0};
+        /*int [] arrayFirst = {1,2,3,4,5,6,7,8,9,0};
         System.out.println("length array is:"+arrayFirst.length);
         for (int i : arrayFirst
              ) {
@@ -30,7 +49,7 @@ public class Test2 {
             System.out.print(arrayThird[s]+" ");
         }
         System.out.println();
-        System.out.println("length arrayThird:"+ arrayThird.length);
+        System.out.println("length arrayThird:"+ arrayThird.length);*/
 
 
         /*int [][] twoDimensionArray;

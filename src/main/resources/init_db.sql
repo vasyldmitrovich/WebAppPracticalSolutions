@@ -12,6 +12,6 @@ create table if not exists solutions.phone
     manufacturer    varchar(30) not null,
     year_of_manufacture    int not null,
     screen_diagonal  double  not null,
-    ram double  null,
+    ram double  not null ,
     internal_memory  double       not null
 );

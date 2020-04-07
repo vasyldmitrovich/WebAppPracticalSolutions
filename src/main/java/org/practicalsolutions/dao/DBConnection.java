@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/*This is simple connection to DB
+that class was only for testing*/
 public class DBConnection implements AutoCloseable {
 
     public static final Logger log = LogManager.getLogger(DBConnection.class);
@@ -14,8 +16,8 @@ public class DBConnection implements AutoCloseable {
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL="jdbc:mysql://localhost:3306/";
     /*Change strings user and password for your DB.*/
-    static final String nameDB = "solutions";//
-    static final String user = "root";
+    static final String nameDB = "solutions?serverTimezone=UTC";//
+    static final String user = "vasyl";
     static final String password = "rootStrong";
 
     private Connection connection = null;
@@ -31,8 +33,10 @@ public class DBConnection implements AutoCloseable {
     public Connection getConnection(){
         try {
             if (connection == null){
-                connection = DriverManager.getConnection(DB_URL+nameDB+"?user="+user+
-                        "&password="+password+"?serverTimezone=UTC");
+                /*connection = DriverManager.getConnection(DB_URL+nameDB+"?user="+user+
+                        "&password="+password+"?serverTimezone=UTC");*/
+                connection = DriverManager.getConnection(
+                        DB_URL+nameDB, user, password);
             }
         } catch (SQLException e){
             log.info("Could not get connection to DB "+e);

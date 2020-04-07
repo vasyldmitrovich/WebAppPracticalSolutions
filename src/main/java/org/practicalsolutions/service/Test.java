@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/*This is testing class, where I am testing some function*/
+/*This is testing class, where I am testing some functionality*/
 public class Test {
     public static void main(String[] args) {
         /*System.out.println("Cool check:");

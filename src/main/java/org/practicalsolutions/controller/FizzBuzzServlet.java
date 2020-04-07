@@ -2,6 +2,8 @@ package org.practicalsolutions.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.practicalsolutions.dao.entity.Phone;
+import org.practicalsolutions.dao.repository.ProductDaoImp;
 import org.practicalsolutions.service.Tasks;
 import org.practicalsolutions.view.FizzBuzzView;
 
@@ -71,6 +73,19 @@ public class FizzBuzzServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
+        /*Testing connection pool*/
+        ProductDaoImp productDaoImp = new ProductDaoImp();
+        Phone phone = productDaoImp.getDBConnectionPoolTEMP();
+        System.out.println("Ok we have data from DB --------"+phone);
+        System.out.print("ID: "+phone.getId()+"  ");
+        System.out.print("PRICE: "+phone.getPrice()+"  ");
+        System.out.print("MANUFACTURER: "+phone.getManufacturer()+"  ");
+        System.out.print("YEAR: "+phone.getYear()+"  ");
+        System.out.print("SCREENDIAGONAL: "+phone.getScreenDiagonal()+"  ");
+        System.out.print("RAM: "+phone.getRam()+"  ");
+        System.out.print("INTERNALMEMORY: "+phone.getInternalMemory()+"  ");
+
         FizzBuzzView fizzBuzzView = new FizzBuzzView();
         out.println(fizzBuzzView.pageFizzBuzz());
     }
