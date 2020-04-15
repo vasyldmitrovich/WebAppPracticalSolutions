@@ -3,6 +3,8 @@ package org.practicalsolutions.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.practicalsolutions.dao.entity.Phone;
+import org.practicalsolutions.dao.entity.Product;
+import org.practicalsolutions.dao.entity.Television;
 import org.practicalsolutions.dao.repository.ProductDaoImp;
 import org.practicalsolutions.service.Tasks;
 import org.practicalsolutions.view.FizzBuzzView;
@@ -76,15 +78,22 @@ public class FizzBuzzServlet extends HttpServlet {
 
         /*Testing connection pool*/
         ProductDaoImp productDaoImp = new ProductDaoImp();
-        Phone phone = productDaoImp.getDBConnectionPoolTEMP();
-        System.out.println("Ok we have data from DB --------"+phone);
-        System.out.print("ID: "+phone.getId()+"  ");
-        System.out.print("PRICE: "+phone.getPrice()+"  ");
-        System.out.print("MANUFACTURER: "+phone.getManufacturer()+"  ");
-        System.out.print("YEAR: "+phone.getYear()+"  ");
-        System.out.print("SCREENDIAGONAL: "+phone.getScreenDiagonal()+"  ");
-        System.out.print("RAM: "+phone.getRam()+"  ");
-        System.out.print("INTERNALMEMORY: "+phone.getInternalMemory()+"  ");
+        Product product = new Product(1,"NextStep",01.1,"IS_PRODUCT",
+                2000,"Product");
+        Product productPhone1 = new Phone(1,"FirstPhone",4000,"Samsung",4000,
+                "Phone",1,4000,4000,4000,1);
+        Product productPhone2 = new Phone(1,"SecondPhone",8000,"Samsung",8000,
+                "Phone",1,8000,8000,8000,1);
+        Product productTelevision1 = new Television(1,"FirstTelevision",1000,"Aero",
+                1000,"Television",1,1000,1);
+        Product productTelevision2 = new Television(1,"SecondTelevision",9000,"Aero",
+                9000,"Television",1,9000,1);
+        productDaoImp.addProduct(product);
+        productDaoImp.addProduct(productPhone1);
+        productDaoImp.addProduct(productPhone2);
+        productDaoImp.addProduct(productTelevision1);
+        productDaoImp.addProduct(productTelevision2);
+
 
         FizzBuzzView fizzBuzzView = new FizzBuzzView();
         out.println(fizzBuzzView.pageFizzBuzz());
