@@ -24,6 +24,7 @@ public class IndexSingleton {
     private String fizzBuzz;
     private String transformSentence;
     private String patchToFiles;
+    private String admin;
 
 
     private static IndexSingleton indexSingleton = new IndexSingleton();
@@ -59,6 +60,11 @@ public class IndexSingleton {
         return patchToFiles;
     }
 
+    public String getAdmin() {
+        log.info("Get info where is file Admin");
+        return admin;
+    }
+
     public void setPatchToFiles(String patchToFiles) {
         this.patchToFiles = patchToFiles+File.separator;
         log.info("Set patch to files on server");
@@ -70,6 +76,7 @@ public class IndexSingleton {
         this.indexBody = getPartialHtml("IndexBody");
         this.fizzBuzz = getPartialHtml("FizzBuzzBody");
         this.transformSentence = getPartialHtml("TransformSentenceBody");
+        this.admin = getPartialHtml("Admin");
         log.info("Set patch to files html on server");
     }
 

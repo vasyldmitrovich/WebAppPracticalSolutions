@@ -1,0 +1,47 @@
+<div class="flex-container">
+    <p>You can add products: Phone and Television.<br>
+            If you wand add Phone click there:
+        <button type="button" id="formAddPhone">Add Phone</button><br>
+            If want add Television click there:
+        <button type="button" id="formAddTelevision">Add Television</button><br></p><br>
+
+
+    <form id="formPhone" method="post" action="/addProduct">
+        <input class="form-control" type="text" maxlength="30" name="name"
+               placeholder="Input Name here..."><br>
+        <input class="form-control" type="number" step="0.1" name="price"
+               placeholder="Input Price here..."><br>
+        <input class="form-control" type="text" maxlength="60" name="manufacturer"
+               placeholder="Input Manufacturer here..."><br>
+        <input class="form-control" type="number" maxlength="4" name="year"
+               placeholder="Input Year here..."><br>
+        <input class="form-control" type="text" maxlength="30" name="category"
+               placeholder="Input Category here..."><br>
+        <input class="form-control" type="number" step="0.1" name="screenDiagonal"
+               placeholder="Input ScreenDiagonal here..."><br>
+        <input class="form-control" type="number" step="0.1" name="rum"
+               placeholder="Input Rum here..."><br>
+        <input class="form-control" type="number" step="0.1" name="internalMemory"
+               placeholder="Input InternalMemory here..."><br>
+
+        <button type="submit" class="btn btn-primary mb-2">Add Phone</button>
+    </form>
+
+    <form id="formTelevision" method="post" action="/addProduct">
+        THIS FROM SECOND FORM
+        <input class="form-control" type="text" maxlength="30" name="name"
+               placeholder="Input Name here..."><br>
+        <input class="form-control" type="number" step="0.1" name="price"
+               placeholder="Input Price here..."><br>
+        <input class="form-control" type="text" maxlength="60" name="manufacturer"
+               placeholder="Input Manufacturer here..."><br>
+        <input class="form-control" type="number" maxlength="4" name="year"
+               placeholder="Input Year here..."><br>
+        <input class="form-control" type="text" maxlength="30" name="category"
+               placeholder="Input Category here..."><br>
+        <input class="form-control" type="number" step="0.1" name="screenDiagonal"
+               placeholder="Input ScreenDiagonal here..."><br>
+
+        <button type="submit" class="btn btn-primary mb-2">Add Phone</button>
+    </form>
+</div>
