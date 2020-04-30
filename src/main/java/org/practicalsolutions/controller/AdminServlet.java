@@ -23,27 +23,43 @@ public class AdminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        /*This is temp decision*/
         String name = request.getParameter("name");
         String price = request.getParameter("price");
-        Double priceD = Double.parseDouble(price);
         String manufacturer = request.getParameter("manufacturer");
         String year = request.getParameter("year");
-        int yearI = Integer.parseInt(year);
         String category = request.getParameter("category");
-        String screenDiagonal = request.getParameter("screenDiagonal");
-        double screenDiagonalD = Double.parseDouble(screenDiagonal);
-        String rum = request.getParameter("rum");
-        double rumD = Double.parseDouble(rum);
-        String internalMemory = request.getParameter("internalMemory");
-        double internalMemoryD = Double.parseDouble(internalMemory);
+
+        //TODO verification correcting data from page
+        //string.trim().length() == 0
+         if (category != null) {
+             if (category.equals("Phone")) {
+                 
+                 try {
+                     double priceD = Double.parseDouble(price);
+                     int yearI = Integer.parseInt(year);
+                     String screenDiagonal = request.getParameter("screenDiagonal");
+                     double screenDiagonalD = Double.parseDouble(screenDiagonal);
+                     String ram = request.getParameter("ram");
+                     double rumD = Double.parseDouble(ram);
+                     String internalMemory = request.getParameter("internalMemory");
+                     double internalMemoryD = Double.parseDouble(internalMemory);
 
 
-        Product product = new Phone(1,name,priceD,manufacturer,yearI,category,
-                1,screenDiagonalD,rumD,internalMemoryD,1);
-        ProductDaoImp productDaoImp = new ProductDaoImp();
-        productDaoImp.addProduct(product);
-        doGet(request,response);
+                     Product product = new Phone(1,name,priceD,manufacturer,yearI,category,
+                             1,screenDiagonalD,rumD,internalMemoryD,1);
+                     ProductDaoImp productDaoImp = new ProductDaoImp();
+                     productDaoImp.addProduct(product);
+                 } catch (NumberFormatException e) {
+                     log.error("Do not correct number format from page "+e);
+                 }
+                 doGet(request,response);
+
+             }
+
+         } else {
+             log.info("method post is bad please repair that");
+             System.out.println("method post is bad please repair that");
+         }
 
 
     }
