@@ -5,7 +5,9 @@
             If want add Television click there:
         <button type="button" id="formAddTelevision">Add Television</button><br></p><br>
 
+    <div class="flex-item">
     <form class="hidden" id="formPhone" method="post" action="/admin">
+        FORM ADD PHONE
         <input class="form-control" type="text" maxlength="30" name="name"
                placeholder="Input Name here..."><br>
         <input class="form-control" type="number" step="0.1" name="price"
@@ -14,7 +16,7 @@
                placeholder="Input Manufacturer here..."><br>
         <input class="form-control" type="number" maxlength="4" name="year"
                placeholder="Input Year here..."><br>
-        <input class="form-control" type="text" maxlength="30" name="category"
+        <input class="form-control" type="hidden" maxlength="30" name="category" value="Phone"
                placeholder="Input Category here..."><br>
         <input class="form-control" type="number" step="0.1" name="screenDiagonal"
                placeholder="Input ScreenDiagonal here..."><br>
@@ -26,8 +28,8 @@
         <button type="submit" class="btn btn-primary mb-2">Add Phone</button>
     </form>
 
-    <form class="hidden" id="formTelevision" method="post" action="/addProduct">
-        THIS FROM SECOND FORM
+    <form class="hidden" id="formTelevision" method="post" action="/admin">
+        FORM ADD TELEVISION (Sorry, but have not work yet)
         <input class="form-control" type="text" maxlength="30" name="name"
                placeholder="Input Name here..."><br>
         <input class="form-control" type="number" step="0.1" name="price"
@@ -36,11 +38,13 @@
                placeholder="Input Manufacturer here..."><br>
         <input class="form-control" type="number" maxlength="4" name="year"
                placeholder="Input Year here..."><br>
-        <input class="form-control" type="text" maxlength="30" name="category"
+        <input class="form-control" type="hidden" maxlength="30" name="category" value="Television"
                placeholder="Input Category here..."><br>
         <input class="form-control" type="number" step="0.1" name="screenDiagonal"
                placeholder="Input ScreenDiagonal here..."><br>
 
-        <button type="submit" class="btn btn-primary mb-2">Add Phone</button>
+        <button type="submit" class="btn btn-primary mb-2">Add Television</button>
     </form>
+    </div>
+
 </div>
