@@ -10,6 +10,12 @@ public class Television extends Product {
 
     public Television(){}
 
+    public Television(String name, double price, String manufacturer, int yearOfManufacturer,
+                      String category, double screenDiagonal) {
+        super(name, price, manufacturer, yearOfManufacturer, category);
+        this.screenDiagonal = screenDiagonal;
+    }
+
     public Television(long id, String name, double price, String manufacturer, int yearOfManufacturer,
                       String category, long id1, double screenDiagonal, long id_category) {
         super(id, name, price, manufacturer, yearOfManufacturer, category);

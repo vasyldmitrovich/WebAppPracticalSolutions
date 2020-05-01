@@ -34,11 +34,15 @@ public class ProductDaoImp implements ProductDao {
                             "id_category) VALUE ("+((Phone) product).getScreenDiagonal()+","+((Phone) product).getRam()+
                             ","+((Phone) product).getInternalMemory()+",LAST_INSERT_ID());";
                     statement.executeUpdate(phoneSql);
+                    log.info("Add product -Phone- to DB");
 
-                } else if (product instanceof Phone) {
+                } else if (product instanceof Television) {
                     String televisionSql = "INSERT INTO solutions.televisions (screen_diagonal,id_category) " +
                             "VALUE ("+((Television) product).getScreenDiagonal()+",LAST_INSERT_ID());";
                     statement.executeUpdate(televisionSql);
+                    log.info("Add product -Television- to DB");
+                } else {
+                    log.info("Add product -Product- to DB");
                 }
 
             } catch (SQLException e) {

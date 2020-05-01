@@ -1,7 +1,7 @@
 package org.practicalsolutions.dao.entity;
 
 import java.util.Objects;
-
+//TODO pattern Builder
 public class Product {
 
     private long id;
@@ -12,6 +12,15 @@ public class Product {
     private String category;
 
     public Product(){}
+
+    public Product(String name, double price, String manufacturer,
+                   int yearOfManufacturer, String category) {
+        this.name = name;
+        this.price = price;
+        this.manufacturer = manufacturer;
+        this.yearOfManufacturer = yearOfManufacturer;
+        this.category = category;
+    }
 
     public Product(long id, String name, double price, String manufacturer,
                    int yearOfManufacturer, String category) {
