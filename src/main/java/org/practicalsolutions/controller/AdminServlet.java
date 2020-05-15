@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "AdminServlet", urlPatterns = "/admin")
 public class AdminServlet extends HttpServlet {
@@ -79,7 +81,7 @@ public class AdminServlet extends HttpServlet {
              }
 
          } else {
-             log.info("method post is bad please repair that");
+             log.info("Data in method post from user do not correct, please repair that");
          }
     }
 
@@ -87,7 +89,10 @@ public class AdminServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
+        ProductDaoImp productDaoImp = new ProductDaoImp();
+        List<Product> productList = productDaoImp.getAllProducts();
+
         AdminView adminView = new AdminView();
-        out.println(adminView.pageAdmin());
+        out.println(adminView.pageAdmin(productList));
     }
 }

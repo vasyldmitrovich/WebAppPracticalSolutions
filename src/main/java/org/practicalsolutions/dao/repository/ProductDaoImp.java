@@ -10,6 +10,8 @@ import org.practicalsolutions.dao.entity.Product;
 import org.practicalsolutions.dao.entity.Television;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDaoImp implements ProductDao {
 
@@ -54,9 +56,67 @@ public class ProductDaoImp implements ProductDao {
         }
     }
 
+    @Override
+    public List<Product> getAllProducts() {
+        List<Product> productList = new ArrayList<>();
+
+        DBCPDataSource dbcpDataSource = new DBCPDataSource();
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        try (Connection connection = dbcpDataSource.getConnection()){
+
+            /*Get Phone from DB*/
+            String sqlPhone = "SELECT * FROM solutions.products INNER JOIN solutions.phones ON products.id = phones.id_category;";
+            preparedStatement = connection.prepareStatement(sqlPhone);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Phone phone = new Phone();
+                phone.setId(resultSet.getLong("id"));
+                phone.setName(resultSet.getString("name"));
+                phone.setPrice(resultSet.getDouble("price"));
+                phone.setManufacturer(resultSet.getString("manufacturer"));
+                phone.setYearOfManufacturer(resultSet.getInt("year_of_manufacturer"));
+                phone.setCategory(resultSet.getString("category"));
+                phone.setScreenDiagonal(resultSet.getDouble("screen_diagonal"));
+                phone.setScreenDiagonal(resultSet.getDouble("ram"));
+                phone.setInternalMemory(resultSet.getDouble("internal_memory"));
+                phone.setIdCategory(resultSet.getLong("id_category"));
+                productList.add(phone);
+            }
+
+            /*Get Television from DB*/
+            String sqlTelevision = "SELECT * FROM solutions.products INNER JOIN solutions.televisions ON products.id = televisions.id_category;";
+            preparedStatement = connection.prepareStatement(sqlTelevision);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Television television = new Television();
+                television.setId(resultSet.getLong("id"));
+                television.setName(resultSet.getString("name"));
+                television.setPrice(resultSet.getDouble("price"));
+                television.setManufacturer(resultSet.getString("manufacturer"));
+                television.setYearOfManufacturer(resultSet.getInt("year_of_manufacturer"));
+                television.setCategory(resultSet.getString("category"));
+                television.setScreenDiagonal(resultSet.getDouble("screen_diagonal"));
+                television.setId_category(resultSet.getLong("id_category"));
+                productList.add(television);
+            }
+
+            /*Add another products
+            what need get from DB*/
+
+        } catch (SQLException e) {
+            log.error("Can not get data from DB: "+e);
+        }
+        return productList;
+    }
 
 
-    /*This is simple connection to DB*/
+
+
+
+    /*Only for testing
+    *This is simple connection to DB*/
     public Phone getProductById() {
         DBConnection dbConnection = new DBConnection();
         String sql ="select id,price,manufacturer,year_of_manufacture,screen_diagonal,ram,internal_memory \n" +
@@ -105,7 +165,5 @@ public class ProductDaoImp implements ProductDao {
         }
         return phone;
     }
-
-
 
 }
