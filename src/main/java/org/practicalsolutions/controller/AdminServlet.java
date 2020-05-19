@@ -41,7 +41,13 @@ public class AdminServlet extends HttpServlet {
                  double priceD = Double.parseDouble(price);
                  int yearI = Integer.parseInt(year);
 
-                 Product product = new Product(1,name,priceD,manufacturer,yearI,category);
+                 Product product = new Product.Builder()
+                         .setName(name)
+                         .setPrice(priceD)
+                         .setManufacturer(manufacturer)
+                         .setYearOfManufacturer(yearI)
+                         .setCategory(category)
+                         .build();
                  productDaoImp.addProduct(product);
                  log.info("From AdminServlet add product -Product- to DB");
              } else if (category.equals("Phone")) {
@@ -51,12 +57,20 @@ public class AdminServlet extends HttpServlet {
                      String screenDiagonal = request.getParameter("screenDiagonal");
                      double screenDiagonalD = Double.parseDouble(screenDiagonal);
                      String ram = request.getParameter("ram");
-                     double rumD = Double.parseDouble(ram);
+                     double ramD = Double.parseDouble(ram);
                      String internalMemory = request.getParameter("internalMemory");
                      double internalMemoryD = Double.parseDouble(internalMemory);
 
-                     Product product = new Phone(name,priceD,manufacturer,yearI,category,
-                             screenDiagonalD,rumD,internalMemoryD);
+                     Product product = new Phone.Builder()
+                             .setName(name)
+                             .setPrice(priceD)
+                             .setManufacturer(manufacturer)
+                             .setYearOfManufacturer(yearI)
+                             .setCategory(category)
+                             .setScreenDiagonal(screenDiagonalD)
+                             .setRam(ramD)
+                             .setInternalMemory(internalMemoryD)
+                             .build();
                      productDaoImp.addProduct(product);
                      log.info("From AdminServlet add product -Phone- to DB");
                  } catch (NumberFormatException e) {
@@ -70,8 +84,14 @@ public class AdminServlet extends HttpServlet {
                      String screenDiagonal = request.getParameter("screenDiagonal");
                      double screenDiagonalD = Double.parseDouble(screenDiagonal);
 
-                     Product product = new Television(name,priceD,manufacturer,
-                             yearI,category,screenDiagonalD);
+                     Product product = new Television.Builder()
+                             .setName(name)
+                             .setPrice(priceD)
+                             .setManufacturer(manufacturer)
+                             .setYearOfManufacturer(yearI)
+                             .setCategory(category)
+                             .setScreenDiagonal(screenDiagonalD)
+                             .build();
                      productDaoImp.addProduct(product);
                      log.info("From AdminServlet add product -Television- to DB");
                  } catch (NumberFormatException e) {

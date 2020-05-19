@@ -13,17 +13,7 @@ public class Product {
 
     public Product(){}
 
-    public Product(String name, double price, String manufacturer,
-                   int yearOfManufacturer, String category) {
-        this.name = name;
-        this.price = price;
-        this.manufacturer = manufacturer;
-        this.yearOfManufacturer = yearOfManufacturer;
-        this.category = category;
-    }
-
-    public Product(long id, String name, double price, String manufacturer,
-                   int yearOfManufacturer, String category) {
+    public Product(long id, String name, double price, String manufacturer, int yearOfManufacturer, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -115,4 +105,47 @@ public class Product {
         if (user.getSpend() < 1000) return price*0.9;
         return price*0.8;
     }//Discount for user if he spend a certain amount money
+
+    public static class Builder {
+        private Product product;
+
+        public Builder() {
+            product = new Product();
+        }
+
+        public Builder setId(long id) {
+            product.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            product.name = name;
+            return this;
+        }
+
+        public Builder setPrice(Double price) {
+            product.price = price;
+            return this;
+        }
+
+        public Builder setManufacturer(String manufacturer) {
+            product.manufacturer = manufacturer;
+            return this;
+        }
+
+        public Builder setYearOfManufacturer(int yearOfManufacturer) {
+            product.yearOfManufacturer = yearOfManufacturer;
+            return this;
+        }
+
+        public Builder setCategory(String category) {
+            product.category = category;
+            return this;
+        }
+
+        public Product build() {
+            return product;
+        }
+
+    }
 }

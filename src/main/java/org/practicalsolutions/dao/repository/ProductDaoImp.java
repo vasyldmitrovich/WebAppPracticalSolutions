@@ -71,17 +71,18 @@ public class ProductDaoImp implements ProductDao {
             preparedStatement = connection.prepareStatement(sqlPhone);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Phone phone = new Phone();
-                phone.setId(resultSet.getLong("id"));
-                phone.setName(resultSet.getString("name"));
-                phone.setPrice(resultSet.getDouble("price"));
-                phone.setManufacturer(resultSet.getString("manufacturer"));
-                phone.setYearOfManufacturer(resultSet.getInt("year_of_manufacturer"));
-                phone.setCategory(resultSet.getString("category"));
-                phone.setScreenDiagonal(resultSet.getDouble("screen_diagonal"));
-                phone.setScreenDiagonal(resultSet.getDouble("ram"));
-                phone.setInternalMemory(resultSet.getDouble("internal_memory"));
-                phone.setIdCategory(resultSet.getLong("id_category"));
+                Product phone = new Phone.Builder()
+                        .setId(resultSet.getLong("id"))
+                        .setName(resultSet.getString("name"))
+                        .setPrice(resultSet.getDouble("price"))
+                        .setManufacturer(resultSet.getString("manufacturer"))
+                        .setYearOfManufacturer(resultSet.getInt("year_of_manufacturer"))
+                        .setCategory(resultSet.getString("category"))
+                        .setScreenDiagonal(resultSet.getDouble("screen_diagonal"))
+                        .setRam(resultSet.getDouble("ram"))
+                        .setInternalMemory(resultSet.getDouble("internal_memory"))
+                        .setIdCategory(resultSet.getLong("id_category"))
+                        .build();
                 productList.add(phone);
             }
 
@@ -90,20 +91,20 @@ public class ProductDaoImp implements ProductDao {
             preparedStatement = connection.prepareStatement(sqlTelevision);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Television television = new Television();
-                television.setId(resultSet.getLong("id"));
-                television.setName(resultSet.getString("name"));
-                television.setPrice(resultSet.getDouble("price"));
-                television.setManufacturer(resultSet.getString("manufacturer"));
-                television.setYearOfManufacturer(resultSet.getInt("year_of_manufacturer"));
-                television.setCategory(resultSet.getString("category"));
-                television.setScreenDiagonal(resultSet.getDouble("screen_diagonal"));
-                television.setId_category(resultSet.getLong("id_category"));
+                Product television = new Television.Builder()
+                        .setId(resultSet.getLong("id"))
+                        .setName(resultSet.getString("name"))
+                        .setPrice(resultSet.getDouble("price"))
+                        .setManufacturer(resultSet.getString("manufacturer"))
+                        .setYearOfManufacturer(resultSet.getInt("year_of_manufacturer"))
+                        .setCategory(resultSet.getString("category"))
+                        .setScreenDiagonal(resultSet.getDouble("screen_diagonal"))
+                        .setIdCategory(resultSet.getLong("id_category"))
+                        .build();
                 productList.add(television);
             }
 
-            /*Add another products
-            what need get from DB*/
+            /*Add another products there*/
 
         } catch (SQLException e) {
             log.error("Can not get data from DB: "+e);
