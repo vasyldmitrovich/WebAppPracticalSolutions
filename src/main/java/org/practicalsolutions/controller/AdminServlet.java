@@ -29,12 +29,21 @@ public class AdminServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String message = request.getParameter("message");
+
         PrintWriter out = response.getWriter();
 
         ProductDaoImp productDaoImp = new ProductDaoImp();
         List<Product> productList = productDaoImp.getAllProducts();
 
         AdminView adminView = new AdminView();
-        out.println(adminView.pageAdmin(productList));
+
+        if (message != null && message.trim().length() !=0) {
+            String fullPage = adminView.pageAdmin(productList);
+            out.println(adminView.addMessageForUser(message,fullPage));
+        } else {
+            out.println(adminView.pageAdmin(productList));
+        }
+
     }
 }

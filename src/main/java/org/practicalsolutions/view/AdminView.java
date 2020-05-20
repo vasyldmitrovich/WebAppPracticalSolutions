@@ -31,7 +31,27 @@ public class AdminView {
         return indexPlusAdm.replace("<!--DataAllProducts-->",sb.toString());
     }
 
-    /*Add method for another product*/
+    public String addMessageForUser (String bodyMessage, String fullPage) {
+        String result = "<div class=\"toast shadow-lg mb-2\" id='toast3'  data-autohide=\"false\" style=\"position: absolute; top: 10px; right: 10px;\">\n" +
+                "        <div class=\"toast-header bg-primary p-2\">\n" +
+                "            <strong class=\"mr-auto text-light\">Info message for sender</strong>\n" +
+                "            <button type=\"button\" class=\"mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\">\n" +
+                "                <span aria-hidden=\"true\">&times;</span>\n" +
+                "            </button>\n" +
+                "        </div>\n" +
+                "        <div class=\"toast-body p-2\">\n" +
+                "            "+bodyMessage+"\n" +
+                "        </div>\n" +
+                "    </div>";
+        return fullPage.replace("<!--MessageForSender-->",result);
+    }
+
+    /*Add
+    method
+    for
+    another
+    product*/
+
     public String addProduct (Product p) {
         StringBuilder sb = new StringBuilder();
         sb.append("<tr>");
