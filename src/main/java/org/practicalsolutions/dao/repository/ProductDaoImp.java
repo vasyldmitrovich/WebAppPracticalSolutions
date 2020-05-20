@@ -48,11 +48,11 @@ public class ProductDaoImp implements ProductDao {
                 }
 
             } catch (SQLException e) {
-                log.error("Can not add data to DB: "+e);
+                log.error("Could not add data to DB: "+e);
             }
         }
         else {
-            log.error("Give empty product, can not get data from empty object and add to DB");
+            log.error("Get empty product, could not get data from empty object and add to DB");
         }
     }
 
@@ -66,7 +66,23 @@ public class ProductDaoImp implements ProductDao {
 
         try (Connection connection = dbcpDataSource.getConnection()){
 
-            /*Get Phone from DB*/
+            /*Get Products from DB*/
+            String sqlProduct = "SELECT * FROM solutions.products WHERE category='Product';";
+            preparedStatement = connection.prepareStatement(sqlProduct);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product.Builder()
+                        .setId(resultSet.getLong("id"))
+                        .setName(resultSet.getString("name"))
+                        .setPrice(resultSet.getDouble("price"))
+                        .setManufacturer(resultSet.getString("manufacturer"))
+                        .setYearOfManufacturer(resultSet.getInt("year_of_manufacturer"))
+                        .setCategory(resultSet.getString("category"))
+                        .build();
+                productList.add(product);
+            }
+
+            /*Get Phones from DB*/
             String sqlPhone = "SELECT * FROM solutions.products INNER JOIN solutions.phones ON products.id = phones.id_category;";
             preparedStatement = connection.prepareStatement(sqlPhone);
             resultSet = preparedStatement.executeQuery();
@@ -86,7 +102,7 @@ public class ProductDaoImp implements ProductDao {
                 productList.add(phone);
             }
 
-            /*Get Television from DB*/
+            /*Get Televisions from DB*/
             String sqlTelevision = "SELECT * FROM solutions.products INNER JOIN solutions.televisions ON products.id = televisions.id_category;";
             preparedStatement = connection.prepareStatement(sqlTelevision);
             resultSet = preparedStatement.executeQuery();
@@ -104,16 +120,29 @@ public class ProductDaoImp implements ProductDao {
                 productList.add(television);
             }
 
-            /*Add another products there*/
+
+            /*Add another products here*/
+
 
         } catch (SQLException e) {
-            log.error("Can not get data from DB: "+e);
+            log.error("Could not get data from DB: "+e);
         }
         return productList;
     }
 
+    @Override
+    public void removeProduct(long id) {
+        DBCPDataSource dbcpDataSource = new DBCPDataSource();
 
+        String sqlDelete = "DELETE FROM solutions.products WHERE id='"+id+"';";
 
+        try (Connection connection = dbcpDataSource.getConnection();
+             Statement statement = connection.createStatement()){
+            int rows = statement.executeUpdate(sqlDelete);
+        } catch (SQLException e) {
+            log.error("Could not delete data from DB: "+e);
+        }
+    }
 
 
     /*Only for testing

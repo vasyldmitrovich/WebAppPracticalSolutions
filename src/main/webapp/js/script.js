@@ -8,3 +8,5 @@ $(document).ready(function() {
         $("#formTelevision").toggle();
     });
 });
+
+$('.toast').toast('show');

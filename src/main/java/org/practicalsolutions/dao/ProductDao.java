@@ -8,4 +8,5 @@ import java.util.List;
 public interface ProductDao {
     void addProduct(Product product);
     List<Product> getAllProducts();
+    void removeProduct(long id);
 }
