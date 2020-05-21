@@ -38,6 +38,12 @@ form.hidden {
     display: none;
 }
 
+#formAddProduct {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 #formAddPhone {
     display: block;
     margin-right: auto;
