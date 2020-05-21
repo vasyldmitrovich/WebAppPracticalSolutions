@@ -52,7 +52,7 @@ public class ProductDaoImp implements ProductDao {
             }
         }
         else {
-            log.error("Get empty product, could not get data from empty object and add to DB");
+            log.error("Empty product");
         }
     }
 
@@ -144,13 +144,59 @@ public class ProductDaoImp implements ProductDao {
         }
     }
 
+    @Override
+    public void updateProduct(Product product) {
+        if (product != null) {
+            String sqlUpdate = "UPDATE solutions.products SET products.name='"+product.getName()+"',\n" +
+                    "                              products.price="+product.getPrice()+",\n" +
+                    "                              products.manufacturer='"+product.getManufacturer()+"',\n" +
+                    "                              products.year_of_manufacturer="+product.getYearOfManufacturer()+"\n" +
+                    "WHERE products.id="+product.getId()+";";
 
-    /*Only for testing
-    *This is simple connection to DB*/
-    public Phone getProductById() {
+            /*Add
+            * another
+            * product
+            * here*/
+
+            if (product instanceof Phone) {
+                sqlUpdate = "UPDATE solutions.products INNER JOIN solutions.phones ON products.id=phones.id_category\n" +
+                        "SET products.name='"+product.getName()+"',\n" +
+                        "    products.price="+product.getPrice()+",\n" +
+                        "    products.manufacturer='"+product.getManufacturer()+"',\n" +
+                        "    products.year_of_manufacturer="+product.getYearOfManufacturer()+",\n" +
+                        "    phones.screen_diagonal="+((Phone) product).getScreenDiagonal()+",\n" +
+                        "    phones.ram="+((Phone) product).getRam()+",\n" +
+                        "    phones.internal_memory="+((Phone) product).getInternalMemory()+"\n" +
+                        "WHERE solutions.products.id="+product.getId()+";";
+            }
+            if (product instanceof Television) {
+                sqlUpdate = "UPDATE solutions.products INNER JOIN solutions.televisions ON products.id=televisions.id_category\n" +
+                        "SET products.name='"+product.getName()+"',\n" +
+                        "    products.price="+product.getPrice()+",\n" +
+                        "    products.manufacturer='"+product.getManufacturer()+"',\n" +
+                        "    products.year_of_manufacturer="+product.getYearOfManufacturer()+",\n" +
+                        "    televisions.screen_diagonal="+((Television) product).getScreenDiagonal()+"\n" +
+                        "WHERE solutions.products.id="+product.getId()+";";
+            }
+
+            DBCPDataSource dbcpDataSource = new DBCPDataSource();
+
+            try (Connection connection = dbcpDataSource.getConnection();
+                 Statement statement = connection.createStatement()){
+                int rows = statement.executeUpdate(sqlUpdate);
+            } catch (SQLException e) {
+                log.error("Could not update data in DB: "+e);
+            }
+        } else {
+            log.error("Empty product");
+        }
+    }
+
+
+    /*Only for testing*/
+    public Phone getProductById(long id) {
         DBConnection dbConnection = new DBConnection();
-        String sql ="select id,price,manufacturer,year_of_manufacture,screen_diagonal,ram,internal_memory \n" +
-                "from solutions.phone where id=1;";
+        String sql ="select * from solutions.phones where id="+id+";";
         Phone phone = new Phone();
         try (Connection connection = dbConnection.getConnection();
              Statement statement = connection.createStatement();
@@ -167,33 +213,6 @@ public class ProductDaoImp implements ProductDao {
             log.error("SQLException can not get Product from DB"+s);
         }
         return phone;
-    }
-
-    /*This is testing pool connection to DB*/
-    public Phone getDBConnectionPoolTEMP() {
-        String sql ="select id,price,manufacturer,year_of_manufacture,screen_diagonal,ram,internal_memory \n" +
-                "from solutions.phone where id=1;";
-        Phone phone = new Phone();
-
-        DBCPDataSource dbcpDataSource = new DBCPDataSource();
-        try (Connection connection = dbcpDataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()){
-
-            while (resultSet.next()) {
-                phone.setId(resultSet.getLong("id"));
-                phone.setPrice(resultSet.getDouble("price"));
-                phone.setManufacturer(resultSet.getString("manufacturer"));
-                phone.setYearOfManufacturer(resultSet.getInt("year_of_manufacture"));
-                phone.setScreenDiagonal(resultSet.getDouble("screen_diagonal"));
-                phone.setScreenDiagonal(resultSet.getDouble("ram"));
-                phone.setInternalMemory(resultSet.getDouble("internal_memory"));
-            }
-        } catch (SQLException e) {
-            log.error("SQLException do not get data from DB: "+e);
-            e.printStackTrace();
-        }
-        return phone;
-    }
+    }//Simple connection to DB
 
 }
