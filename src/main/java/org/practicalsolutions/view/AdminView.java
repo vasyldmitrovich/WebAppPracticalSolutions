@@ -18,6 +18,14 @@ public class AdminView {
 
         String indexPlusAdm = reedIndexPage.replace("<!--Admin-->",reedAdminPage);
 
+        /*Add
+        * condition
+        * for
+        * show
+        * another
+        * product
+        * here*/
+
         for (Product p: productList
              ) {
             if (p instanceof Phone) {
@@ -47,10 +55,14 @@ public class AdminView {
     }
 
     /*Add
-    method
-    for
-    another
-    product*/
+    * method
+    * for
+    * show
+    * another
+    * product
+    * on
+    * page
+    * here*/
 
     public String addProduct (Product p) {
         StringBuilder sb = new StringBuilder();
@@ -78,14 +90,14 @@ public class AdminView {
                 "                        FORM EDIT PRODUCT\n" +
                 "                        <input class=\"form-control\" type=\"hidden\" name=\"id\" value=\""+p.getId()+"\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"text\" maxlength=\"30\" name=\"name\" value=\""+p.getName()+"\"\n" +
-                "                               placeholder=\"Input Name here...\"><br>\n" +
+                "                               placeholder=\"Input Name here...\" title=\"Name\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" step=\"0.1\" name=\"price\" value=\""+p.getPrice()+"\"\n" +
-                "                               placeholder=\"Input Price here...\"><br>\n" +
+                "                               placeholder=\"Input Price here...\" title=\"Price\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"text\" maxlength=\"60\" name=\"manufacturer\" value=\""+p.getManufacturer()+"\"\n" +
-                "                               placeholder=\"Input Manufacturer here...\"><br>\n" +
+                "                               placeholder=\"Input Manufacturer here...\" title=\"Manufacturer\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" maxlength=\"4\" name=\"year\" value=\""+p.getYearOfManufacturer()+"\"\n" +
-                "                               placeholder=\"Input Year here...\"><br>\n" +
-                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"category\" value=\""+p.getCategory()+"\"><br>\n" +
+                "                               placeholder=\"Input Year here...\" title=\"Year\"><br>\n" +
+                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"category\" value=\""+p.getCategory()+"\" title=\"Category\"><br>\n" +
                 "                        \n" +
                 "                        <button type=\"submit\" class=\"btn btn-primary\">Save changes</button>\n" +
                 "                    </form>\n" +
@@ -121,23 +133,23 @@ public class AdminView {
                 "                <div class=\"modal-body\">\n" +
                 "                    <form method=\"post\" action=\"/edit/update\">\n" +
                 "                        FORM EDIT PHONE\n" +
-                "                        <input class=\"form-control\" type=\"hidden\" name=\"id\" value=\""+p.getId()+"\"><br>\n" +
+                "                        <input class=\"form-control\" type=\"hidden\" name=\"id\" value=\""+p.getId()+"\" title=\"Id\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"text\" maxlength=\"30\" name=\"name\" value=\""+p.getName()+"\"\n" +
-                "                               placeholder=\"Input Name here...\"><br>\n" +
+                "                               placeholder=\"Input Name here...\" title=\"Name\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" step=\"0.1\" name=\"price\" value=\""+p.getPrice()+"\"\n" +
-                "                               placeholder=\"Input Price here...\"><br>\n" +
+                "                               placeholder=\"Input Price here...\" title=\"Price\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"text\" maxlength=\"60\" name=\"manufacturer\" value=\""+p.getManufacturer()+"\"\n" +
-                "                               placeholder=\"Input Manufacturer here...\"><br>\n" +
+                "                               placeholder=\"Input Manufacturer here...\" title=\"Manufacturer\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" maxlength=\"4\" name=\"year\" value=\""+p.getYearOfManufacturer()+"\"\n" +
-                "                               placeholder=\"Input Year here...\"><br>\n" +
-                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"category\" value=\""+p.getCategory()+"\"><br>\n" +
+                "                               placeholder=\"Input Year here...\" title=\"Year\"><br>\n" +
+                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"category\" value=\""+p.getCategory()+"\" title=\"Category\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" step=\"0.1\" name=\"screenDiagonal\" value=\""+((Phone) p).getScreenDiagonal()+"\"\n" +
-                "                               placeholder=\"Input ScreenDiagonal here...\"><br>\n" +
+                "                               placeholder=\"Input ScreenDiagonal here...\" title=\"ScreenDiagonal\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" step=\"0.1\" name=\"ram\" value=\""+((Phone) p).getRam()+"\"\n" +
-                "                               placeholder=\"Input Ram here...\"><br>\n" +
+                "                               placeholder=\"Input Ram here...\" title=\"Ram\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" step=\"0.1\" name=\"internalMemory\" value=\""+((Phone) p).getInternalMemory()+"\"\n" +
-                "                               placeholder=\"Input InternalMemory here...\"><br>\n" +
-                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"idCategory\" value=\""+((Phone) p).getIdCategory()+"\"><br>\n" +
+                "                               placeholder=\"Input InternalMemory here...\" title=\"InternalMemory\"><br>\n" +
+                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"idCategory\" value=\""+((Phone) p).getIdCategory()+"\" title=\"IdCategory\"><br>\n" +
                 "                        <button type=\"submit\" class=\"btn btn-primary\">Save changes</button>\n" +
                 "                    </form>\n" +
                 "                </div>\n" +
@@ -172,19 +184,19 @@ public class AdminView {
                 "                <div class=\"modal-body\">\n" +
                 "                    <form method=\"post\" action=\"/edit/update\">\n" +
                 "                        FORM EDIT TELEVISION\n" +
-                "                        <input class=\"form-control\" type=\"hidden\" name=\"id\" value=\""+p.getId()+"\"><br>\n" +
+                "                        <input class=\"form-control\" type=\"hidden\" name=\"id\" value=\""+p.getId()+"\" title=\"Id\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"text\" maxlength=\"30\" name=\"name\" value=\""+p.getName()+"\"\n" +
-                "                               placeholder=\"Input Name here...\"><br>\n" +
+                "                               placeholder=\"Input Name here...\" title=\"Name\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" step=\"0.1\" name=\"price\" value=\""+p.getPrice()+"\"\n" +
-                "                               placeholder=\"Input Price here...\"><br>\n" +
+                "                               placeholder=\"Input Price here...\" title=\"Price\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"text\" maxlength=\"60\" name=\"manufacturer\" value=\""+p.getManufacturer()+"\"\n" +
-                "                               placeholder=\"Input Manufacturer here...\"><br>\n" +
+                "                               placeholder=\"Input Manufacturer here...\" title=\"Manufacturer\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" maxlength=\"4\" name=\"year\" value=\""+p.getYearOfManufacturer()+"\"\n" +
-                "                               placeholder=\"Input Year here...\"><br>\n" +
-                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"category\" value=\""+p.getCategory()+"\"><br>\n" +
+                "                               placeholder=\"Input Year here...\" title=\"Year\"><br>\n" +
+                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"category\" value=\""+p.getCategory()+"\" title=\"Category\"><br>\n" +
                 "                        <input class=\"form-control\" type=\"number\" step=\"0.1\" name=\"screenDiagonal\" value=\""+((Television) p).getScreenDiagonal()+"\"\n" +
-                "                               placeholder=\"Input ScreenDiagonal here...\"><br>\n" +
-                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"idCategory\" value=\""+((Television) p).getIdCategory()+"\"><br>\n" +
+                "                               placeholder=\"Input ScreenDiagonal here...\" title=\"ScreenDiagonal\"><br>\n" +
+                "                        <input class=\"form-control\" type=\"hidden\" maxlength=\"30\" name=\"idCategory\" value=\""+((Television) p).getIdCategory()+"\" title=\"IdCategory\"><br>\n" +
                 "                        <button type=\"submit\" class=\"btn btn-primary\">Save changes</button>\n" +
                 "                    </form>\n" +
                 "                </div>\n" +
