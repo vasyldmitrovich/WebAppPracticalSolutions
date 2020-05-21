@@ -21,13 +21,13 @@ public class DBCPDataSource implements AutoCloseable {
             DataSource ds = (DataSource) initContext.lookup("java:comp/env/jdbc/DBConnectionPull");
             connection = ds.getConnection();
         } catch (NamingException | SQLException e) {
-            log.error("When get connection to DB we catch NamingException or SQLException: "+e);
+            log.error("Could not get connection to DB: "+e);
         }
         return connection;
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         try {
             if(connection != null) {
                 connection.close();
