@@ -17,54 +17,61 @@ public class ProductDaoImp implements ProductDao {
 
     public static final Logger log = LogManager.getLogger(ProductDaoImp.class);
 
+    //TODO Rewrite logic in addProduct method and add AutoCloseable
     @Override
     public void addProduct(Product product) {
         if (product != null) {
-            DBCPDataSource dbcpDataSource = new DBCPDataSource();
-
             String firstSql = "INSERT INTO solutions.products (name, price, manufacturer, " +
-                    "year_of_manufacturer, category) VALUE ('"+product.getName()+"',"+product.getPrice()+
-                    ",'"+product.getManufacturer()+"',"+product.getYearOfManufacturer()+
-                    ",'"+product.getCategory()+"');";
+                    "year_of_manufacturer, category) VALUE ('" + product.getName() + "'," + product.getPrice() +
+                    ",'" + product.getManufacturer() + "'," + product.getYearOfManufacturer() +
+                    ",'" + product.getCategory() + "');";
+
+            DBCPDataSource dbcpDataSource = new DBCPDataSource();
 
             try (Connection connection = dbcpDataSource.getConnection();
                  Statement statement = connection.createStatement()) {
                 statement.executeUpdate(firstSql);
 
+                /*Add
+                 * condition
+                 * another
+                 * product
+                 * here*/
+
                 if (product instanceof Phone) {
-                    String phoneSql = "INSERT INTO solutions.phones (screen_diagonal, ram, internal_memory,"+
-                            "id_category) VALUE ("+((Phone) product).getScreenDiagonal()+","+((Phone) product).getRam()+
-                            ","+((Phone) product).getInternalMemory()+",LAST_INSERT_ID());";
+                    String phoneSql = "INSERT INTO solutions.phones (screen_diagonal, ram, internal_memory," +
+                            "id_category) VALUE (" + ((Phone) product).getScreenDiagonal() + "," +
+                            ((Phone) product).getRam() + "," + ((Phone) product).getInternalMemory() +
+                            ",LAST_INSERT_ID());";
                     statement.executeUpdate(phoneSql);
-                    log.info("Add product -Phone- to DB");
+                    log.info("Added product with category -Phone- to DB");
 
                 } else if (product instanceof Television) {
                     String televisionSql = "INSERT INTO solutions.televisions (screen_diagonal,id_category) " +
-                            "VALUE ("+((Television) product).getScreenDiagonal()+",LAST_INSERT_ID());";
+                            "VALUE (" + ((Television) product).getScreenDiagonal() + ",LAST_INSERT_ID());";
                     statement.executeUpdate(televisionSql);
-                    log.info("Add product -Television- to DB");
+                    log.info("Added product with category -Television- to DB");
                 } else {
-                    log.info("Add product -Product- to DB");
+                    log.info("Added product with category -Product- to DB");
                 }
-
             } catch (SQLException e) {
-                log.error("Could not add data to DB: "+e);
+                log.error("Could not add data to DB: " + e);
             }
-        }
-        else {
+        } else {
             log.error("Empty product");
         }
     }
 
+    //TODO Rewrite logic in getAllProduct method and add AutoCloseable
     @Override
     public List<Product> getAllProducts() {
         List<Product> productList = new ArrayList<>();
 
         DBCPDataSource dbcpDataSource = new DBCPDataSource();
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-        try (Connection connection = dbcpDataSource.getConnection()){
+        try (Connection connection = dbcpDataSource.getConnection()) {
 
             /*Get Products from DB*/
             String sqlProduct = "SELECT * FROM solutions.products WHERE category='Product';";
@@ -125,7 +132,22 @@ public class ProductDaoImp implements ProductDao {
 
 
         } catch (SQLException e) {
-            log.error("Could not get data from DB: "+e);
+            log.error("Could not get data from DB: " + e);
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                log.info("Do not close ResultSet: "+e);
+            }
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                log.info("Do not close PreparedStatement: "+e);
+            }
         }
         return productList;
     }
@@ -134,58 +156,61 @@ public class ProductDaoImp implements ProductDao {
     public void removeProduct(long id) {
         DBCPDataSource dbcpDataSource = new DBCPDataSource();
 
-        String sqlDelete = "DELETE FROM solutions.products WHERE id='"+id+"';";
+        String sqlDelete = "DELETE FROM solutions.products WHERE id='" + id + "';";
 
         try (Connection connection = dbcpDataSource.getConnection();
-             Statement statement = connection.createStatement()){
+             Statement statement = connection.createStatement()) {
             int rows = statement.executeUpdate(sqlDelete);
         } catch (SQLException e) {
-            log.error("Could not delete data from DB: "+e);
+            log.error("Could not delete data from DB: " + e);
         }
     }
 
     @Override
     public void updateProduct(Product product) {
         if (product != null) {
-            String sqlUpdate = "UPDATE solutions.products SET products.name='"+product.getName()+"',\n" +
-                    "                              products.price="+product.getPrice()+",\n" +
-                    "                              products.manufacturer='"+product.getManufacturer()+"',\n" +
-                    "                              products.year_of_manufacturer="+product.getYearOfManufacturer()+"\n" +
-                    "WHERE products.id="+product.getId()+";";
+            String sqlUpdate = "UPDATE solutions.products SET products.name='" + product.getName() + "',\n" +
+                    "                              products.price=" + product.getPrice() + ",\n" +
+                    "                              products.manufacturer='" + product.getManufacturer() + "',\n" +
+                    "                              products.year_of_manufacturer=" + product.getYearOfManufacturer() +
+                    "\n" +
+                    "WHERE products.id=" + product.getId() + ";";
 
             /*Add
-            * another
-            * product
-            * here*/
+             * condition
+             * another
+             * product
+             * here*/
 
             if (product instanceof Phone) {
                 sqlUpdate = "UPDATE solutions.products INNER JOIN solutions.phones ON products.id=phones.id_category\n" +
-                        "SET products.name='"+product.getName()+"',\n" +
-                        "    products.price="+product.getPrice()+",\n" +
-                        "    products.manufacturer='"+product.getManufacturer()+"',\n" +
-                        "    products.year_of_manufacturer="+product.getYearOfManufacturer()+",\n" +
-                        "    phones.screen_diagonal="+((Phone) product).getScreenDiagonal()+",\n" +
-                        "    phones.ram="+((Phone) product).getRam()+",\n" +
-                        "    phones.internal_memory="+((Phone) product).getInternalMemory()+"\n" +
-                        "WHERE solutions.products.id="+product.getId()+";";
+                        "SET products.name='" + product.getName() + "',\n" +
+                        "    products.price=" + product.getPrice() + ",\n" +
+                        "    products.manufacturer='" + product.getManufacturer() + "',\n" +
+                        "    products.year_of_manufacturer=" + product.getYearOfManufacturer() + ",\n" +
+                        "    phones.screen_diagonal=" + ((Phone) product).getScreenDiagonal() + ",\n" +
+                        "    phones.ram=" + ((Phone) product).getRam() + ",\n" +
+                        "    phones.internal_memory=" + ((Phone) product).getInternalMemory() + "\n" +
+                        "WHERE solutions.products.id=" + product.getId() + ";";
             }
             if (product instanceof Television) {
-                sqlUpdate = "UPDATE solutions.products INNER JOIN solutions.televisions ON products.id=televisions.id_category\n" +
-                        "SET products.name='"+product.getName()+"',\n" +
-                        "    products.price="+product.getPrice()+",\n" +
-                        "    products.manufacturer='"+product.getManufacturer()+"',\n" +
-                        "    products.year_of_manufacturer="+product.getYearOfManufacturer()+",\n" +
-                        "    televisions.screen_diagonal="+((Television) product).getScreenDiagonal()+"\n" +
-                        "WHERE solutions.products.id="+product.getId()+";";
+                sqlUpdate = "UPDATE solutions.products INNER JOIN solutions.televisions ON " +
+                        "products.id=televisions.id_category\n" +
+                        "SET products.name='" + product.getName() + "',\n" +
+                        "    products.price=" + product.getPrice() + ",\n" +
+                        "    products.manufacturer='" + product.getManufacturer() + "',\n" +
+                        "    products.year_of_manufacturer=" + product.getYearOfManufacturer() + ",\n" +
+                        "    televisions.screen_diagonal=" + ((Television) product).getScreenDiagonal() + "\n" +
+                        "WHERE solutions.products.id=" + product.getId() + ";";
             }
 
             DBCPDataSource dbcpDataSource = new DBCPDataSource();
 
             try (Connection connection = dbcpDataSource.getConnection();
-                 Statement statement = connection.createStatement()){
-                int rows = statement.executeUpdate(sqlUpdate);
+                 Statement statement = connection.createStatement()) {
+                statement.executeUpdate(sqlUpdate);
             } catch (SQLException e) {
-                log.error("Could not update data in DB: "+e);
+                log.error("Could not update data in DB: " + e);
             }
         } else {
             log.error("Empty product");
@@ -196,11 +221,11 @@ public class ProductDaoImp implements ProductDao {
     /*Only for testing*/
     public Phone getProductById(long id) {
         DBConnection dbConnection = new DBConnection();
-        String sql ="select * from solutions.phones where id="+id+";";
+        String sql = "select * from solutions.phones where id=" + id + ";";
         Phone phone = new Phone();
         try (Connection connection = dbConnection.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)){
+             ResultSet resultSet = statement.executeQuery(sql)) {
             if (resultSet.next()) {
                 phone.setId(resultSet.getLong("id"));
                 phone.setPrice(resultSet.getDouble("price"));
@@ -210,7 +235,7 @@ public class ProductDaoImp implements ProductDao {
                 phone.setInternalMemory(resultSet.getDouble("internal_memory"));
             }
         } catch (SQLException s) {
-            log.error("SQLException can not get Product from DB"+s);
+            log.error("Can not get Product from DB" + s);
         }
         return phone;
     }//Simple connection to DB
