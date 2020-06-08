@@ -18,18 +18,20 @@ public class Tasks {
             String iterator = String.valueOf(i);
             String fizz = firstName;
             String buzz = secondName;
-            if (i%3!=0) fizz = ""; else iterator = "";
-            if (i%5!=0) buzz = ""; else iterator = "";
-            fizzBuzz.append(iterator+fizz+buzz+"  ");
+            if (i % 3 != 0) fizz = "";
+            else iterator = "";
+            if (i % 5 != 0) buzz = "";
+            else iterator = "";
+            fizzBuzz.append(iterator + fizz + buzz + "  ");
         }
         return fizzBuzz.toString();
     }
 
     /*Return a new int array of length n, containing the numbers 0, 1, 2, ... n-1.
-    * The given n may be 0*/
+     * The given n may be 0*/
     public int[] fizzArray1(int n) {
-        int [] myNewReturnArray = new int [n];
-        for (int i = 0; i < myNewReturnArray.length; i++){
+        int[] myNewReturnArray = new int[n];
+        for (int i = 0; i < myNewReturnArray.length; i++) {
             myNewReturnArray[i] = i;
         }
         return myNewReturnArray;
@@ -38,7 +40,7 @@ public class Tasks {
     /*return a new string array of length n, containing the strings "0", "1" "2" ..
     through n-1. N may be 0*/
     public String[] fizzArray2(int n) {
-        String [] out = new String [n];
+        String[] out = new String[n];
         for (int i = 0; i < out.length; i++) {
             out[i] = String.valueOf(i);
         }
@@ -49,34 +51,36 @@ public class Tasks {
     from start up to but not including end. The end number will be greater or
     equal to the start number.*/
     public int[] fizzArray3(int start, int end) {
-        int lengthArray = end-start;
-        int [] fizzArray = new int [lengthArray];
-        for (int i = 0; i < fizzArray.length; i++){
-            fizzArray[i] = start+i;
+        int lengthArray = end - start;
+        int[] fizzArray = new int[lengthArray];
+        for (int i = 0; i < fizzArray.length; i++) {
+            fizzArray[i] = start + i;
         }
         return fizzArray;
     }
 
     /*Consider the series of numbers beginning at start and running up to but not including end.
-    * Return a new String[] array containing the string form of these numbers, except for
-    * multiples of 3, use "Fizz" instead of the number, for multiples of 5 use "Buzz",
-    * and for multiples of both 3 and 5 use "FizzBuzz".*/
+     * Return a new String[] array containing the string form of these numbers, except for
+     * multiples of 3, use "Fizz" instead of the number, for multiples of 5 use "Buzz",
+     * and for multiples of both 3 and 5 use "FizzBuzz".*/
     public String[] fizzBuzz(int start, int end) {
-        String [] arr = new String [end-start];
-        for (int i= 0; i < arr.length; i++) {
-            int count = start+i;
+        String[] arr = new String[end - start];
+        for (int i = 0; i < arr.length; i++) {
+            int count = start + i;
             String iterator = String.valueOf(count);
             String fizz = "Fizz";
             String buzz = "Buzz";
-            if(count%3 != 0) fizz = ""; else iterator = "";
-            if(count%5 != 0) buzz = ""; else iterator = "";
-            arr[i] = iterator+fizz+buzz;
+            if (count % 3 != 0) fizz = "";
+            else iterator = "";
+            if (count % 5 != 0) buzz = "";
+            else iterator = "";
+            arr[i] = iterator + fizz + buzz;
         }
         return arr;
     }
 
-    public String swapVariable(int a, int b){
-        a=a+b-(b=a);
-        return "For now first number: "+a+" second number: "+b;
+    public String swapVariable(int a, int b) {
+        a = a + b - (b = a);
+        return "For now first number: " + a + " second number: " + b;
     }
 }

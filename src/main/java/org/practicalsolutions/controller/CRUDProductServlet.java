@@ -22,7 +22,7 @@ public class CRUDProductServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-    doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,18 +34,18 @@ public class CRUDProductServlet extends HttpServlet {
         if (pathInfo == null || pathInfo.equals("/")) {
             response.sendRedirect("/admin");
         } else if (pathInfo.equals("/add")) {
-            addProduct(request,response);
+            addProduct(request, response);
         } else if (pathInfo.equals("/delete")) {
-            deleteProduct(request,response);
+            deleteProduct(request, response);
         } else if (pathInfo.equals("/update")) {
-            updateProduct(request,response);
+            updateProduct(request, response);
         } else {
             response.sendRedirect("/admin");
         }
 
     }
 
-    public void addProduct (HttpServletRequest request, HttpServletResponse response)
+    public void addProduct(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String name = request.getParameter("name");
         String price = request.getParameter("price");
@@ -75,10 +75,10 @@ public class CRUDProductServlet extends HttpServlet {
                     productDaoImp.addProduct(product);
                     messageForUser = "Product added to DB successful";
                 } catch (NumberFormatException e) {
-                    log.error("Do not correct number format from page "+e);
+                    log.error("Do not correct number format from page " + e);
                     messageForUser = "Product did not added to DB because not correct number format data from page";
                 }
-                response.sendRedirect("/admin?message="+messageForUser);
+                response.sendRedirect("/admin?message=" + messageForUser);
             }
 
             if (categoryLowerC.equals("phone")) {
@@ -106,10 +106,10 @@ public class CRUDProductServlet extends HttpServlet {
                     productDaoImp.addProduct(product);
                     messageForUser = "Phone added to DB successful";
                 } catch (NumberFormatException e) {
-                    log.error("Do not correct number format from page "+e);
+                    log.error("Do not correct number format from page " + e);
                     messageForUser = "Phone did not added to DB because not correct number format data from page";
                 }
-                response.sendRedirect("/admin?message="+messageForUser);
+                response.sendRedirect("/admin?message=" + messageForUser);
             }
 
             if (categoryLowerC.equals("television")) {
@@ -131,22 +131,22 @@ public class CRUDProductServlet extends HttpServlet {
                     productDaoImp.addProduct(product);
                     messageForUser = "Television added to DB successful";
                 } catch (NumberFormatException e) {
-                    log.error("Do not correct format data from page "+e);
+                    log.error("Do not correct format data from page " + e);
                     messageForUser = "Television did not add to DB because not correct format data from page";
                 }
-                response.sendRedirect("/admin?message="+messageForUser);
+                response.sendRedirect("/admin?message=" + messageForUser);
             }
 
             /*Add
-            * logic
-            * for
-            * another
-            * products*/
+             * logic
+             * for
+             * another
+             * products*/
 
         } else {
             log.info("Data in method post do not correct, please repair that");
             messageForUser = "Data in form do not correct, please repair that";
-            response.sendRedirect("/admin?message="+messageForUser);
+            response.sendRedirect("/admin?message=" + messageForUser);
         }
     }
 
@@ -162,14 +162,14 @@ public class CRUDProductServlet extends HttpServlet {
                 productDaoImp.removeProduct(idL);
                 messageForUser = "Product deleted from DB successful";
             } catch (NumberFormatException e) {
-                log.error("Do not correct format data from page "+e);
+                log.error("Do not correct format data from page " + e);
                 messageForUser = "Product did not delete from DB because not correct format data from page";
             }
-            response.sendRedirect("/admin?message="+messageForUser);
+            response.sendRedirect("/admin?message=" + messageForUser);
         } else {
             log.error("Parameter id is null");
             messageForUser = "Product did not delete from DB because has not been added id product";
-            response.sendRedirect("/admin?message="+messageForUser);
+            response.sendRedirect("/admin?message=" + messageForUser);
         }
     }
 
@@ -206,10 +206,10 @@ public class CRUDProductServlet extends HttpServlet {
                     productDao.updateProduct(product);
                     messageForUser = "Product updated successful";
                 } catch (NumberFormatException e) {
-                    log.error("Do not correct number format from page "+e);
+                    log.error("Do not correct number format from page " + e);
                     messageForUser = "Product did not update to DB because not correct number format data from page";
                 }
-                response.sendRedirect("/admin?message="+messageForUser);
+                response.sendRedirect("/admin?message=" + messageForUser);
             }
 
             if (categoryLowerC.equals("phone")) {
@@ -239,10 +239,10 @@ public class CRUDProductServlet extends HttpServlet {
                     productDao.updateProduct(product);
                     messageForUser = "Phone updated successful";
                 } catch (NumberFormatException e) {
-                    log.error("Do not correct number format from page "+e);
+                    log.error("Do not correct number format from page " + e);
                     messageForUser = "Phone did not update to DB because not correct number format data from page";
                 }
-                response.sendRedirect("/admin?message="+messageForUser);
+                response.sendRedirect("/admin?message=" + messageForUser);
             }
 
             if (categoryLowerC.equals("television")) {
@@ -266,10 +266,10 @@ public class CRUDProductServlet extends HttpServlet {
                     productDao.updateProduct(product);
                     messageForUser = "Television updated successful";
                 } catch (NumberFormatException e) {
-                    log.error("Do not correct format data from page "+e);
+                    log.error("Do not correct format data from page " + e);
                     messageForUser = "Television did not update to DB because not correct format data from page";
                 }
-                response.sendRedirect("/admin?message="+messageForUser);
+                response.sendRedirect("/admin?message=" + messageForUser);
             }
 
             /*Add
@@ -281,13 +281,9 @@ public class CRUDProductServlet extends HttpServlet {
         } else {
             log.info("Data in method post do not correct, please repair that");
             messageForUser = "Data in form do not correct, please repair that";
-            response.sendRedirect("/admin?message="+messageForUser);
+            response.sendRedirect("/admin?message=" + messageForUser);
         }
     }
-
-
-
-
 
 
 }
